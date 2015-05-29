@@ -10,4 +10,4 @@ insecure
 twbs:bootstrap
 underscore
 accounts-password
-accounts-base
+ian:accounts-ui-bootstrap-3

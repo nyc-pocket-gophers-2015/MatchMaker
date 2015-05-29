@@ -4,6 +4,9 @@
 
 <body>
   <h1>Welcome to Matchmaker!</h1>
-  {{>login}}
-  {{>signup}}
+  {{>loginButtons}}
+
+  {{#if currentUser}}
+    <h1>You are a user</h1>
+  {{/if}}
 </body>
