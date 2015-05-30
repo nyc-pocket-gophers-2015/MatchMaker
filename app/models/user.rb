@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   has_many :matchers, through: :matches
   has_many :inverse_matches, class_name: "Match", foreign_key: "match_id"
   has_many :inverse_matchers, through: :inverse_matches, source: :user
+
+  validates :name, :email, :password_digest, :birthday, :gender, :location, presence: true
+  validates :email, uniqueness: true
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
 end
