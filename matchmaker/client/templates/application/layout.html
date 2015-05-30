@@ -1,0 +1,10 @@
+<template name="layout">
+  <div class='container'>
+    {{>header}}
+    <h1>Welcome to Matchmaker!</h1>
+    {{#if currentUser}}
+      <h1>You are a user</h1>
+    {{/if}}
+    {{>yield}}
+  </div>
+</template>
