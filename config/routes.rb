@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :users do
+    resources :friendship, except: [:new, :show, :edit]
+    resources :match, only:[:create, :update]
+  end
+  resources :pairing, only:[:create, :show, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
