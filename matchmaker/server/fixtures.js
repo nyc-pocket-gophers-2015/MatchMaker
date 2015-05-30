@@ -1,7 +1,8 @@
-console.log("Hey, it's running!!!!!!!!!!!")
+
 if (Meteor.users.find().count() === 0) {
+  console.log("Hey, it's running!!!!!!!!!!!")
   Accounts.createUser({
-    email: "me@dp.com",
+    email: "doralypantaleon@gmail.com",
     password: "123456",
     profile: {
       name: "Dora",
@@ -9,9 +10,11 @@ if (Meteor.users.find().count() === 0) {
       bio: "I'm super old",
       location: "NYC",
       gender: "Female",
+      gravatarUrl: Gravatar.imageUrl("doralypantaleon@gmail.com"),
       friends: []
     }
   });
+
   Accounts.createUser({
     email: "me@at.com",
     password: "123456",
