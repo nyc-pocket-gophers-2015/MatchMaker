@@ -1,5 +1,5 @@
 Template.userHome.helpers({
   friends: function() {
-    return currentUser.profile.friends;
+    return Meteor.user().profile.friends;
   }
 })
