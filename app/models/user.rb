@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
   validates :name, :email, :password_digest, :birthday, :gender, :location, presence: true
   validates :email, uniqueness: true
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
+
+  def all_friends
+    return (friends + inverse_friends)
+  end
 end
