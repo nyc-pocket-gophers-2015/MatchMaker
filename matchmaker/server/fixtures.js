@@ -10,7 +10,7 @@ if (Meteor.users.find().count() === 0) {
       bio: "I'm super old",
       location: "NYC",
       gender: "Female",
-      gravatarUrl: Gravatar.imageUrl("doralypantaleon@gmail.com"),
+      // gravatarUrl: Gravatar.imageUrl("doralypantaleon@gmail.com"),
       friends: []
     }
   });

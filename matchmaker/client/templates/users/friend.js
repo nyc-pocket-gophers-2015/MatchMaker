@@ -4,6 +4,6 @@ Template.friend.helpers({
     return this.profile.name;
   },
   gravatarUrl: function(){
-    return this.profile.gravatarUrl;
+    return Gravatar.imageUrl(this.emails[0].address);
   }
 })
