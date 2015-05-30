@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  acts_as_messageable
   has_secure_password
   has_many :friendships
   has_many :friends, through: :friendships
