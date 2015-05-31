@@ -52,4 +52,4 @@ emails.each do |cur_email, gender|
   user.update_attributes(picture_url: find_gravatar_url(user))
 end
 
-User.create(name: "Matchmaker", email: "matchmaker@mm.com", birthday: "08/23/1989", gender: "male", location: "NYC", password: "123")
+User.create(name: "Matchmaker", email: "matchmaker@mm.com", birthday: Faker::Date.between(50.years.ago, 18.years.ago), gender: "male", location: "NYC", password: "123")
