@@ -26,4 +26,14 @@ class User < ActiveRecord::Base
 
   def mailboxer_email(object)
   end
+
+  def can_be_friends(user)
+    return false if user == self
+    return false if user.all_friends.include?(self)
+    return true
+  end
+
+  def pending_friendships
+    Friendship.where(friend_id: id, status: false)
+  end
 end

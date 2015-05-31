@@ -4,3 +4,16 @@
   <p>DOB :<%= @user.birthday %></p>
   <p>Bio: <%= @user.bio %></p>
 </div>
+
+<% if current_user.can_be_friends(@user) %>
+  <%= link_to "Send Friend Request", user_friendships_path(user_id: @user.id, friendship: { user_id: current_user.id, friend_id: @user.id }), method: 'post' %>
+<% end %>
+
+<% if current_user == @user %>
+  <p>Pending Friend Requests</p>
+  <% @user.pending_friendships.each do |friendship| %>
+    <%= form_tag user_friendship_path(id: friendship.id, user_id: @user.id, friendship: { status: true }), method: 'put' do %>
+      <%= submit_tag friendship.user.name %>
+    <% end %>
+  <% end %>
+<% end %>
