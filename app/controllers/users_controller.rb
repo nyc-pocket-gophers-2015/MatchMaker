@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_current_user
+  before_action :require_current_user, except: [:new, :create]
   before_action :user_by_id, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -16,10 +16,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.update_attributes(picture_url: find_gravatar_url)
+      session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
       flash[:warn] = "That is not a valid user"
-      redirect_to :new
+      redirect_to new_user_path
     end
   end
 
@@ -56,5 +58,10 @@ class UsersController < ApplicationController
 
   def user_by_id
     @user = User.find_by(id: params[:id])
+  end
+
+  def find_gravatar_url
+    hash = Digest::MD5.hexdigest(@user.email)
+    return "http://www.gravatar.com/avatar/#{hash}"
   end
 end
