@@ -1,0 +1,7 @@
+<h1>Friends List</h1>
+
+<% @friends.each do |friend| %>
+  <ul>
+    <li><%= friend.picture_url %><%= friend.name %></li>
+  </ul>
+<% end %>
