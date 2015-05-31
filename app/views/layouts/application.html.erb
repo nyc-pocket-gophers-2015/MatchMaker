@@ -11,6 +11,8 @@
     <%= form_tag '/logout', method: 'get' do %>
       <%= submit_tag "logout" %>
     <% end %>
+  <li><%= link_to 'Your Conversations', conversations_path %></li>
+
   <% end %>
 
 
