@@ -23,4 +23,7 @@ class User < ActiveRecord::Base
   def all_friends
     return (friends + inverse_friends)
   end
+
+  def mailboxer_email(object)
+  end
 end

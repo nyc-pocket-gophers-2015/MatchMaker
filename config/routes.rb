@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   get '/invite' => 'users#invite'
 
   root 'users#index'
+
+  resources :conversations, only: [:index, :show, :destroy]
+
+  resources :messages, only: [:new, :create]
 end
