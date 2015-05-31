@@ -2,6 +2,6 @@
 
 <% @friends.each do |friend| %>
   <ul>
-    <li><%= friend.picture_url %><%= friend.name %></li>
+    <li><img src="<%= friend.picture_url %>"><%= friend.name %></li>
   </ul>
 <% end %>
