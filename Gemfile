@@ -32,6 +32,7 @@ gem 'will_paginate'
 # gem 'capistrano-rails', group: :development
 gem 'mailboxer', github: 'lacco/mailboxer'
 gem 'gravatar_image_tag'
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,7 +46,6 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails'
-  gem 'faker'
   gem 'factory_girl_rails'
   gem 'hirb'
 end
