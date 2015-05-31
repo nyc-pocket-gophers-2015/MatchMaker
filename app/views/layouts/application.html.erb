@@ -7,6 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if current_user %>
+    <%= form_tag '/logout', method: 'get' do %>
+      <%= submit_tag "logout" %>
+    <% end %>
+  <% end %>
+
 
 <%= yield %>
 

@@ -6,6 +6,9 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def home
+  end
+
   def new
     @user = User.new
   end
