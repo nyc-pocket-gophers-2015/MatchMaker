@@ -1,17 +1,24 @@
 <h3>Conversation</h3>
 
-<div class="panel panel-default">
-  <div class="panel-heading"><%= @conversation.subject %></div>
+<p>Chatting with
+  <%= render 'conversations/participants', conversation: @conversation %>
+</p>
 
-  <div class="panel-body">
-    <div class="messages">
-      <% @conversation.receipts_for(current_user).each do |receipt| %>
-        <% message = receipt.message %>
-
-        <%= message.sender.name %>
-          says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %>
-        <%= message.body %>
+      <% @conversation.receipts_for(current_user).sort.each do |receipt| %>
+          <% message = receipt.message %>
+          <% next if message.sender.name == "Matchmaker" %>
+          <div class='message'>
+            <strong><%= message.sender.name %>:</strong>
+            <%= message.body %>
+          </div>
       <% end %>
     </div>
   </div>
 </div>
+<br>
+<%= form_tag reply_conversation_path(@conversation), method: :post do %>
+  <div class="form-group">
+    <%= text_area_tag 'body', nil, cols: 60, class: 'form-control', placeholder: 'Type something...', required: true %>
+  </div>
+  <%= submit_tag "Send Message", class: 'btn btn-primary' %>
+<% end %>
