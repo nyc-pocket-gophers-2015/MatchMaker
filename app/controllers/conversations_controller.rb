@@ -4,11 +4,18 @@ class ConversationsController < ApplicationController
     before_action :get_conversation, except: [:index]
 
   def index
-    @conversations = @mailbox.inbox.paginate(page: params[:page], per_page: 10)
+    @conversations = @mailbox.inbox.paginate(page: params[:page], per_page: 100)
   end
 
   def show
   end
+
+  def reply
+    current_user.reply_to_conversation(@conversation, params[:body])
+    flash[:success] = 'Reply sent'
+    redirect_to conversation_path(@conversation)
+  end
+
 
   private
 
