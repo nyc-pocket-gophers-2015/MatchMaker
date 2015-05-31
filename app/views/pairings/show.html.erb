@@ -1,0 +1,5 @@
+<%= image_tag @pairing.user.picture_url %><%= image_tag @pairing.pair.picture_url %>
+<div>
+  <%= link_to "No", pairings_path(user_id: current_user.id), method: "post" %>
+  <%= link_to "Yes", pairing_path(user_id: current_user.id), method: "put" %>
+</div>
