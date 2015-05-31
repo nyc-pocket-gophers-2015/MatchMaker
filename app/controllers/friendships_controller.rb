@@ -5,7 +5,7 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = Friendship.new(friendship_params)
-    if friendship.save
+    if @friendship.save
       redirect_to :back
     else
       flash[:warn] = "Unable to send friend request, please try again"
@@ -16,9 +16,10 @@ class FriendshipsController < ApplicationController
   def update
     @friendship = Friendship.find_by(id: params[:id])
     if @friendship.update_attributes(friendship_params)
-      redirect_to :back
+      redirect_to user_path(id: params[:user_id])
     else
       flash[:warn] = "There was an error, please try again"
+      redirect_to :back
     end
   end
 
@@ -30,6 +31,6 @@ class FriendshipsController < ApplicationController
   private
 
   def friendship_params
-    params.require(:friendship).permit(:user_id, :friend_id)
+    params.require(:friendship).permit(:user_id, :friend_id, :status)
   end
 end
