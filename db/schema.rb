@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20150530201551) do
   enable_extension "plpgsql"
 
   create_table "friendships", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
+    t.integer  "user_id",                    null: false
+    t.integer  "friend_id",                  null: false
     t.boolean  "status",     default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -78,15 +78,15 @@ ActiveRecord::Schema.define(version: 20150530201551) do
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
 
   create_table "matches", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",    null: false
     t.integer  "matcher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "pairings", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "pair_id"
+    t.integer  "user_id",    null: false
+    t.integer  "pair_id",    null: false
     t.integer  "match_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
