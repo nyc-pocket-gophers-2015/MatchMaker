@@ -17,5 +17,5 @@
     <% end %>
   <% end %>
 
-  <%= link_to "Create Pair!", pairings_path(user_id: @user.id), method: "post" %>
+  <%= link_to "Create Pair!", new_pairing_path(user_id: @user.id) %>
 <% end %>

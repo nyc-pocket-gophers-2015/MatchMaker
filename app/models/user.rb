@@ -25,6 +25,22 @@ class User < ActiveRecord::Base
     return (friends + inverse_friends)
   end
 
+  def all_approved_friends
+    #REFACTOR!!!!!!!!!! But it works, so yeah
+    approved_friends = []
+    approved_friends.concat(all_approved_friendships.select{ |friendship| friendship.user == self}.map(&:friend))
+    approved_friends.concat(all_friendships.select{ |friendship| friendship.friend == self}.map(&:user))
+    approved_friends
+  end
+
+  def all_friendships
+    return (friendships + inverse_friendships)
+  end
+
+  def all_approved_friendships
+    all_friendships.select { |friendship| friendship.status == true }
+  end
+
   def mailboxer_email(object)
   end
 
@@ -41,5 +57,22 @@ class User < ActiveRecord::Base
   def validate_age
     age = Date.today.year - birthday.year
     errors.add(:birthday, "Must be 18 years or older to register") if age < 18
+  end
+
+  def all_pairings
+    return (pairings + inverse_pairings)
+  end
+
+  def all_pending_pairings
+    all_pairings.select { |pairing| pairing.match.matcher == nil }
+  end
+
+  def find_random_pending_pair_from_friends
+    all_friends.shuffle.each do |friend|
+      pot_pairings = friend.all_pending_pairings
+      pot_pairings.delete_if{ |pairing| pairing.match.user == self }
+      return pot_pairings.sample if pot_pairings.length > 0
+    end
+    return nil
   end
 end
