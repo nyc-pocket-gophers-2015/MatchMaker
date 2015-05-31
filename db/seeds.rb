@@ -1,4 +1,5 @@
-emails = [ ["alex.taber0@gmail.com","male"],
+emails = [
+["alex.taber0@gmail.com","male"],
 ["aris.a.perez@gmail.com", "male"],
 ["me@brendanmiranda.com", "male"],
 ["doralypantaleon@gmail.com", "female" ],
@@ -24,11 +25,22 @@ emails = [ ["alex.taber0@gmail.com","male"],
 ["ben.costolo@gmail.com", "male"],
 ["luciankahn@gmail.com", "male"],
 ["tara.c.frye@gmail.com", "female"],
-["charles.green88@gmail.com"]]
-
-def random_gender
-  ["male", "female"][rand(0..1)]
-end
+["charles.green88@gmail.com"],
+["imharrypark@gmail.com", "male"],
+["cetswanson@gmail.com", "male"],
+["ayakokurushima@gmail.com", "female"],
+["ginny.w.martin@gmail.com", "female"],
+["grace.yasukawa@gmail.com", "female"],
+["emilygerngross@gmail.com", "female"],
+["iring.ma@gmail.com", "female"],
+["ling.giang@gmail.com", "female"],
+["lkim3182@gmail.com", "female"],
+["sara.gilford@gmail.com", "female"],
+["thegrandnumber@gmail.com", "female"],
+["mary.c.baylis@gmail.com", "female"],
+["jldennison@gmail.com", "female"],
+["schmidtsusanr@gmail.com", "female"]
+]
 
 def find_gravatar_url(user)
   hash = Digest::MD5.hexdigest(user.email)
