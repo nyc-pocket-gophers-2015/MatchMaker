@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :users do
     resources :friendships, except: [:new, :show, :edit]
-    resources :matches, only:[:create, :update]
+    resources :matches, only:[:update]
   end
-  resources :pairings, only:[:create, :show, :destroy]
+  resources :pairings, only:[:create, :show, :destroy, :update]
+  get 'confirmed', to: 'pairings#confirmed'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

@@ -16,4 +16,6 @@
       <%= submit_tag friendship.user.name %>
     <% end %>
   <% end %>
+
+  <%= link_to "Create Pair!", pairings_path(user_id: @user.id), method: "post" %>
 <% end %>
