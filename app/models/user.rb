@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   validates :name, :email, :password_digest, :birthday, :gender, :location, presence: true
   validates :email, uniqueness: true
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
+  validate :validate_age
 
   def all_friends
     return (friends + inverse_friends)
@@ -35,5 +36,10 @@ class User < ActiveRecord::Base
 
   def pending_friendships
     Friendship.where(friend_id: id, status: false)
+  end
+
+  def validate_age
+    age = Date.today.year - birthday.year
+    errors.add(:birthday, "Must be 18 years or older to register") if age < 18
   end
 end
