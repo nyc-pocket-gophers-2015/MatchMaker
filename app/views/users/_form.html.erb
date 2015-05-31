@@ -1,0 +1,35 @@
+<%= form_for @user do |f| %>
+  <div>
+    <%= f.label :name  %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :email  %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label :password  %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+  <div>
+    <%= f.label :birthday %>
+    <%= f.date_select :birthday, { start_year: 100.years.ago.year, end_year: Date.today.year, default: Date.today} %>
+  </div>
+  <div>
+    <%= f.label :gender %>
+    <%= f.select :gender, [["male"],["female"]] %>
+  </div>
+  <div>
+    <div>
+      <%= f.label :bio %>
+    </div>
+    <%= f.text_area :bio %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
