@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :friendships, except: [:new, :show, :edit]
     resources :matches, only:[:update]
   end
-  resources :pairings, only:[:create, :show, :destroy, :update]
+  resources :pairings, only:[:create, :show, :destroy, :update, :new]
   get 'confirmed', to: 'pairings#confirmed'
 
   get '/login' => 'sessions#new'

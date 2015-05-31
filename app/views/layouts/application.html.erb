@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <p><%= flash[:warn] %></p>
+  <p><%= flash[:notice] %></p>
+  <p><%= flash[:error] %></p>
   <% if current_user %>
     <%= form_tag '/logout', method: 'get' do %>
       <%= submit_tag "logout" %>

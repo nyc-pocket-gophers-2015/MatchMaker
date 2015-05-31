@@ -1,0 +1,9 @@
+<%= image_tag @pairing.user.picture_url %><%= image_tag @pairing.pair.picture_url %>
+<div>
+  <%= link_to "No", new_pairing_path(user_id: current_user.id) %>
+  <%= form_for @pairing do |f| %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :pair_id %>
+    <%= f.submit "Yes" %>
+  <% end %>
+</div>
