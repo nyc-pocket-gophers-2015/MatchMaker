@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :inverse_matches, class_name: "Match", foreign_key: "match_id"
   has_many :inverse_matchers, through: :inverse_matches, source: :user
 
+  has_many :rejected_pairings
+
   validates :name, :email, :password_digest, :birthday, :gender, :location, presence: true
   validates :email, uniqueness: true
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
@@ -71,6 +73,7 @@ class User < ActiveRecord::Base
     all_friends.shuffle.each do |friend|
       pot_pairings = friend.all_pending_pairings
       pot_pairings.delete_if{ |pairing| pairing.match.user == self }
+      pot_pairings.delete_if{ |pairing| pairing.user_rejected_pair(self) }
       return pot_pairings.sample if pot_pairings.length > 0
     end
     return nil
