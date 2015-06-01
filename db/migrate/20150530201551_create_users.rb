@@ -10,8 +10,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :picture_url
       t.text   :bio
       t.string :preferred_gender, null: false
-      t.integer :preferred_age_low
-      t.integer :preferred_age_high
+      t.integer :preferred_age_low, default: 18
+      t.integer :preferred_age_high, default: 100
 
       t.timestamps null: false
     end
