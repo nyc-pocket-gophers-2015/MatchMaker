@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :matches, only:[:update]
   end
   resources :pairings, only:[:create, :show, :destroy, :update, :new]
+  resources :rejected_pairings, only: [:create]
   get 'confirmed', to: 'pairings#confirmed'
 
   get '/login' => 'sessions#new'
