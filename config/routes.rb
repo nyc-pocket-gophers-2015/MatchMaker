@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get '/invite' => 'users#invite'
 
-  root 'users#index'
+  root 'users#home'
 
   resources :messages, only: [:new, :create]
 

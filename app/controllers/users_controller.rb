@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_current_user, except: [:new, :create]
+  before_action :require_current_user, except: [:new, :create, :home]
   before_action :user_by_id, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -7,6 +7,11 @@ class UsersController < ApplicationController
   end
 
   def home
+    if current_user
+      redirect_to user_path(current_user)
+    else
+      redirect_to login_path
+    end
   end
 
   def new
