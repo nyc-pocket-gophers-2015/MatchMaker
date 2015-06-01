@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   has_many :rejected_pairings
 
-  validates :name, :email, :password_digest, :birthday, :gender, :location, presence: true
+  validates :name, :email, :password_digest, :birthday, :gender, :location, :preferred_gender, presence: true
   validates :email, uniqueness: true
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
   validate :validate_age
@@ -56,9 +56,17 @@ class User < ActiveRecord::Base
     Friendship.where(friend_id: id, status: false)
   end
 
-  def validate_age
+  def age
     age = Date.today.year - birthday.year
+  end
+
+  def validate_age
+    age
     errors.add(:birthday, "Must be 18 years or older to register") if age < 18
+  end
+
+  def preferred_age_range
+    (preferred_age_low..preferred_age_high)
   end
 
   def all_pairings

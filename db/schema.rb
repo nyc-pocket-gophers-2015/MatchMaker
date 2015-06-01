@@ -100,16 +100,19 @@ ActiveRecord::Schema.define(version: 20150601131450) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",           null: false
-    t.string   "name",            null: false
-    t.date     "birthday",        null: false
-    t.string   "gender",          null: false
-    t.string   "location",        null: false
+    t.string   "email",              null: false
+    t.string   "password_digest",    null: false
+    t.string   "name",               null: false
+    t.date     "birthday",           null: false
+    t.string   "gender",             null: false
+    t.string   "location",           null: false
     t.string   "picture_url"
     t.text     "bio"
-    t.string   "password_digest", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "preferred_gender",   null: false
+    t.integer  "preferred_age_low"
+    t.integer  "preferred_age_high"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"

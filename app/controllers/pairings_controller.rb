@@ -70,6 +70,8 @@ class PairingsController < ApplicationController
   def can_be_pair(pair1,pair2)
     return false if pair2 == nil
     return false if pair1 == pair2
+    return false if pair1.preferred_gender != pair2.gender
+    return false if !pair1.preferred_age_range.include?(pair2.age)
     return false if pair2 == @user
     true
   end

@@ -21,15 +21,22 @@
   </div>
   <div>
     <%= f.label :gender %>
-    <%= f.select :gender, [["male"],["female"]] %>
+    <%= f.select :gender, [["Male"],["Female"]] %>
   </div>
   <div>
-    <div>
-      <%= f.label :bio %>
-    </div>
+    <%= f.label :bio %>
     <%= f.text_area :bio %>
   </div>
+  <div>Preferences: </div>
   <div>
-    <%= f.submit %>
+    <%= f.label :gender %>
+    <%= f.select :preferred_gender, [["Male"],["Female"], ["All"]] %>
+  </div>
+  <div>
+    <%= f.label :Ages %>
+    <%= f.number_field :preferred_age_low, in: 18..100%> - <%= f.number_field :preferred_age_high, in: 18..100%>
+  </div>
+  <div>
+    <%= f.submit "Save" %>
   </div>
 <% end %>
