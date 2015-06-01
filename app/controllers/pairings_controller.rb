@@ -53,7 +53,7 @@ class PairingsController < ApplicationController
   end
 
   def generate_pair
-    users_friends = @user.all_friends
+    users_friends = @user.all_approved_friends
     return nil if users_friends.length < 1
     pair1 = users_friends[rand(0...users_friends.length)]
     pair2 = nil
@@ -62,9 +62,6 @@ class PairingsController < ApplicationController
       pair2 = User.find_by(id: rand(0...User.all.count))
     end
     Pairing.new(user_id: pair1.id, pair_id: pair2.id)
-  end
-
-  def generate_pair_pool(user)
   end
 
   def can_be_pair(pair1,pair2)
