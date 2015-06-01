@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :location, null: false
       t.string :picture_url
       t.text   :bio
-      t.string :preferred_gender
+      t.string :preferred_gender, null: false
       t.integer :preferred_age_low
       t.integer :preferred_age_high
 

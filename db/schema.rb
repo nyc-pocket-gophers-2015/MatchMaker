@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20150601131450) do
     t.string   "location",           null: false
     t.string   "picture_url"
     t.text     "bio"
-    t.string   "preferred_gender"
+    t.string   "preferred_gender",   null: false
     t.integer  "preferred_age_low"
     t.integer  "preferred_age_high"
     t.datetime "created_at",         null: false
