@@ -3,10 +3,11 @@ class UsersController < ApplicationController
   before_action :user_by_id, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search]
-      @users = User.where("lower(name) LIKE ?", "%#{params[:search].downcase}%")
-    else
-      @users = User.all
+    @users = User.all
+    if request.xhr?
+      respond_to do |format|
+        format.json {  render json: User.all }
+      end
     end
   end
 
