@@ -27,11 +27,21 @@ class User < ActiveRecord::Base
     return (friends + inverse_friends)
   end
 
+  def is_friends(user)
+    all_approved_friends.find{ |friend| friend.id == user.id }
+  end
+
+  def friendship(user)
+    u = all_friendships.find{ |friendship| friendship.user == user }
+    f = all_friendships.find{ |friendship| friendship.friend == user }
+    u || f
+  end
+
   def all_approved_friends
     #REFACTOR!!!!!!!!!! But it works, so yeah
     approved_friends = []
     approved_friends.concat(all_approved_friendships.select{ |friendship| friendship.user == self}.map(&:friend))
-    approved_friends.concat(all_friendships.select{ |friendship| friendship.friend == self}.map(&:user))
+    approved_friends.concat(all_approved_friendships.select{ |friendship| friendship.friend == self}.map(&:user))
     approved_friends
   end
 
@@ -40,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def all_approved_friendships
-    all_friendships.select { |friendship| friendship.status == true }
+    all_friendships.select { |friendship| friendship.status == "approved" }
   end
 
   def mailboxer_email(object)
@@ -53,7 +63,7 @@ class User < ActiveRecord::Base
   end
 
   def pending_friendships
-    Friendship.where(friend_id: id, status: false)
+    Friendship.where(friend_id: id, status: "pending")
   end
 
   def age
