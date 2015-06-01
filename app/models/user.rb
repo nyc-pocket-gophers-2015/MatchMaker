@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
     all_friends.shuffle.each do |friend|
       pot_pairings = friend.all_pending_pairings
       pot_pairings.delete_if{ |pairing| pairing.match.user == self }
+      pot_pairings.delete_if{ |pairing| pairing.user_is_in_pairing(self) }
       pot_pairings.delete_if{ |pairing| pairing.user_rejected_pair(self) }
       return pot_pairings.sample if pot_pairings.length > 0
     end

@@ -9,4 +9,10 @@ class Pairing < ActiveRecord::Base
   def user_rejected_pair(current_user)
     rejected_pairings.find_by(user_id: current_user.id) ? true : false
   end
+
+  def user_is_in_pairing(current_user)
+    return true if user == current_user
+    return true if pair == current_user
+    false
+  end
 end
