@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   before_action :user_by_id, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    if params[:search]
+      @users = User.where("lower(name) LIKE ?", "%#{params[:search].downcase}%")
+    else
+      @users = User.all
+    end
   end
 
   def home
