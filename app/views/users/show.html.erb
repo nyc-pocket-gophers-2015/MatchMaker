@@ -3,6 +3,8 @@
   <p>Name: <%= @user.name %></p>
   <p>DOB :<%= @user.birthday %></p>
   <p>Bio: <%= @user.bio %></p>
+  <p>Preference: <%= @user.preferred_gender %><p>
+  <p>Age Preference: <%= @user.preferred_age_low%> - <%= @user.preferred_age_high %></p>
 </div>
 
 <% if current_user.can_be_friends(@user) %>
@@ -20,4 +22,6 @@
   <%= link_to "Create Pair!", new_pairing_path(user_id: @user.id) %>
 <% end %>
 
-<%= link_to "Friends List",user_friendships_path(user_id: @user.id) %>
+<%= link_to "Friends List", user_friendships_path(user_id: @user.id) %>
+
+<%= link_to "Edit Profile", edit_user_path(user_id: @user.id) %>
