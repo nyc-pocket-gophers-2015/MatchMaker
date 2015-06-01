@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 20150601131450) do
   enable_extension "plpgsql"
 
   create_table "friendships", force: :cascade do |t|
-    t.integer  "user_id",                    null: false
-    t.integer  "friend_id",                  null: false
-    t.boolean  "status",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "user_id",                        null: false
+    t.integer  "friend_id",                      null: false
+    t.text     "status",     default: "pending"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|

@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def all_approved_friendships
-    all_friendships.select { |friendship| friendship.status == true }
+    all_friendships.select { |friendship| friendship.status == "approved" }
   end
 
   def mailboxer_email(object)
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def pending_friendships
-    Friendship.where(friend_id: id, status: false)
+    Friendship.where(friend_id: id, status: "pending")
   end
 
   def age
