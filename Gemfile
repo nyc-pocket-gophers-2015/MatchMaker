@@ -27,7 +27,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'
 
 gem 'will_paginate'
-
+gem 'twitter-typeahead-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'mailboxer', github: 'lacco/mailboxer'
