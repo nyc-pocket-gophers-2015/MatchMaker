@@ -27,20 +27,16 @@
     <%= f.label :bio %>
     <%= f.text_area :bio %>
   </div>
+  <div>Preferences: </div>
   <div>
-    <%= f.label :preferred_gender %>
+    <%= f.label :gender %>
     <%= f.select :preferred_gender, [["male"],["female"], ["all"]] %>
   </div>
-   <div>
-    <%= f.label :preferred_age_low %>
-    <%= f.number_field :preferred_age_low, in: 18..100%>
-
-  </div>
-   <div>
-    <%= f.label :preferred_age_high %>
-    <%= f.number_field :preferred_age_high, in: 18..100%>
+  <div>
+    <%= f.label :Ages %>
+    <%= f.number_field :preferred_age_low, in: 18..100%> - <%= f.number_field :preferred_age_high, in: 18..100%>
   </div>
   <div>
-    <%= f.submit %>
+    <%= f.submit "Save" %>
   </div>
 <% end %>
