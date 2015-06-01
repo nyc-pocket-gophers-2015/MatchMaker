@@ -11,7 +11,7 @@
   <p><%= flash[:notice] %></p>
   <p><%= flash[:error] %></p>
   <% if current_user %>
-  <%= link_to "Home", user_path(current_user) %>
+  <%= link_to "Home", root_path %>
     <%= form_tag '/logout', method: 'get' do %>
       <%= submit_tag "logout" %>
     <% end %>
