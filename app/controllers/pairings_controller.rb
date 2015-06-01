@@ -4,7 +4,8 @@ class PairingsController < ApplicationController
   def new
     #find any existing pending_pairings
     @user = User.find_by(id: params[:user_id])
-    @pairing = generate_pair
+    potential_pairing = @user.find_random_pending_pair_from_friends
+    potential_pairing ? @pairing = potential_pairing : @pairing = generate_pair
     unless @pairing
       flash[:warn] = "Unable to generate a new pair. Try adding some friends!"
       redirect_to :back
