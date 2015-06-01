@@ -33,7 +33,7 @@ class PairingsController < ApplicationController
     @pairing = Pairing.find_by(id: params[:id])
     @match_bot = User.find_by(name: "Matchmaker")
     if @pairing.match.update_attributes(matcher_id: current_user.id)
-      match_bot.send_message([@pairing.user, @pairing.pair], "Congrats, You have been matched.", "no subject").conversation
+      @match_bot.send_message([@pairing.user, @pairing.pair], "Congrats, You have been matched.", "no subject").conversation
       redirect_to new_pairing_path(user_id: current_user.id)
     else
       flash[:warn] = "Something went wrong, please try again"

@@ -6,7 +6,6 @@
   </p>
   <% @conversation.receipts_for(current_user).sort.each do |receipt| %>
     <% message = receipt.message %>
-    <% next if message.sender.name == "Matchmaker" %>
     <div class='message'>
       <strong><%= message.sender.name %>:</strong>
       <%= message.body %>
