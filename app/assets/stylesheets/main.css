@@ -21,7 +21,8 @@ a:hover {
 }
 
 .ui-content {
-  height: 400px;
+  height: 450px;
+  min-height: 100%;
   color: #888;
 }
 
@@ -70,4 +71,38 @@ p.bio {
 
 .footer {
   padding-top: 10px !important;
+}
+
+div.ui-block-a {
+  text-align: left;
+  margin-top: 9px;
+}
+
+.pair1 {
+  float: left;
+  color: red;
+}
+
+.pair2 {
+  float: right;
+  color: green;
+}
+
+.clear {
+  clear: both;
+}
+
+.voting-control {
+  cursor: pointer;
+  margin-top: 100px;
+  border: 2px solid #ff605d;
+}
+
+.voting-forms {
+  display: none;
+}
+
+.pairing-title {
+  font: 400 30px/1 'Kaushan Script';
+  color: #ff605d;
 }
