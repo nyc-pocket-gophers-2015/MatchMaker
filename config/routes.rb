@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   get '/invite' => 'users#invite'
-  post '/invite' => 'users#invite'
+  post '/invite' => 'users#send_invite'
 
   root 'users#home'
 

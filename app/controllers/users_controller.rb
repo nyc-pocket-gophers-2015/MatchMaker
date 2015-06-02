@@ -61,8 +61,12 @@ class UsersController < ApplicationController
   end
 
   def invite
+  end
+
+  def send_invite
     email = params[:email]
     UserMailer.invite_email(email).deliver_now
+    redirect_to root_path
   end
 
   private
