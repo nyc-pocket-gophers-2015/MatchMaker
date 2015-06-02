@@ -35,6 +35,7 @@ gem 'gravatar_image_tag'
 gem 'faker'
 gem "font-awesome-rails"
 gem 'jquery_mobile_rails'
+gem 'omniauth-facebook'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
