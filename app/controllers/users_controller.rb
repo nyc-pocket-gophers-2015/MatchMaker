@@ -60,6 +60,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def invite
+    email = params[:email]
+    UserMailer.invite_email(email).deliver_now
+  end
+
   private
 
   def user_params

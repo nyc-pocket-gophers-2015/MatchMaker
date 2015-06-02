@@ -1,6 +1,6 @@
 <h3>Invite your friends</h3>
-<%= form_tag '/invite' do %>
-  <div><%= text_field_tag 'email', nil, :placeholder => 'enter friend\'s email here' %></div>
+<%= form_tag invite_path do %>
+  <div><%= text_field_tag :email, nil, :placeholder => 'enter friend\'s email here' %></div>
   <div><%= submit_tag 'invite' %></div>
 <% end %>
 
