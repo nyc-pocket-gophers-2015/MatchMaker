@@ -8,7 +8,6 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js'></script>
 </head>
 <body>
-  <% if current_user %>
   <div data-role="page" id="pageone">
     <div data-role="header" data-position="fixed">
       <div class="ui-grid-b">
@@ -18,12 +17,19 @@
           <% end %>
         </div>
         <div class="ui-block-b" style="text-align: center;">
-          <%= link_to root_path do %>
+          <%= link_to user_path current_user do %>
             <span class="logo-text middle-item">MM</span>
           <% end %>
         </div>
         <div class="ui-block-c" style="text-align: right;">
-          <i class="fa fa-bars fa-4x"></i>
+          <a href='#popupDiv' data-rel="popup" data-transition="pop"><i class="fa fa-bars fa-4x"></i></a>
+          <div id='popupDiv' data-role='popup'>
+            <ul data-role="listview" class="listview" data-icon="false">
+              <li><a href="#" data-rel="dialog">Logout</a></li>
+              <li><a href="#" data-rel="dialog">View Profile</a></li>
+              <li><a href="#" data-rel="dialog">Edit Profile</a></li>
+            </ul>
+          </div><!-- /popup -->
         </div>
       </div><!-- /grid-a -->
     </div>
@@ -62,8 +68,5 @@
       </div><!-- /grid-a -->
     </div>
   </div>
-  <% else %>
-    <%= render "sessions/new", layout: false %>
-  <% end %>
 </body>
 </html>
