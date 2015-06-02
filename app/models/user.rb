@@ -84,15 +84,14 @@ class User < ActiveRecord::Base
   end
 
   def all_pending_pairings
-    all_pairings.select { |pairing| pairing.match.matcher == nil }
+    all_pairings.select { |pairing| pairing.is_finished == false }
   end
 
   def find_random_pending_pair_from_friends
     all_friends.shuffle.each do |friend|
       pot_pairings = friend.all_pending_pairings
-      pot_pairings.delete_if{ |pairing| pairing.match.user == self }
+      pot_pairings.delete_if{ |pairing| pairing.voted_by_user(self) }
       pot_pairings.delete_if{ |pairing| pairing.user_is_in_pairing(self) }
-      pot_pairings.delete_if{ |pairing| pairing.user_rejected_pair(self) }
       return pot_pairings.sample if pot_pairings.length > 0
     end
     return nil
@@ -116,5 +115,26 @@ class User < ActiveRecord::Base
     user.oauth_expires_at = Time.at(auth.credentials.expires_at)
     user.save!
     user
+  end
+
+  def find_random_pair_from_friends
+    all_approved_friends.shuffle.each do |friend|
+      User.all.shuffle.each do |pot_pair|
+        if friend.can_be_pair(pot_pair) && pot_pair != self
+          return { friend: friend, pair: pot_pair }
+        end
+      end
+    end
+    nil
+  end
+
+  def can_be_pair(user)
+    return false if user == self
+    return false unless self.preferred_gender == user.gender || self.preferred_gender == "All"
+    return false unless user.preferred_gender == self.gender || user.preferred_gender == "All"
+    return false unless self.preferred_age_range.include?(user.age)
+    return false if Pairing.find_by(user_id: self.id, pair_id: user.id)
+    return false if Pairing.find_by(user_id: user.id, pair_id: self.id)
+    true
   end
 end
