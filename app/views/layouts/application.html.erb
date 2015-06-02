@@ -7,6 +7,8 @@
   <%= csrf_meta_tags %>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js'></script>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <% if current_user %>
@@ -23,10 +25,9 @@
               <span class="logo-text middle-item">MM</span>
             <% end %>
           </div>
-          <% num = rand(1000).to_s %>
           <div class="ui-block-c" style="text-align: right;">
-            <a href='#popupDiv<%= num %>' data-rel="popup" data-transition="pop"><i class="fa fa-bars fa-4x"></i></a>
-            <div id='popupDiv<%= num %>' data-role='popup'>
+            <a href='#popupDiv<%= @current_timestamp %>' data-rel="popup" data-transition="pop"><i class="fa fa-bars fa-4x"></i></a>
+            <div id='popupDiv<%= @current_timestamp %>' data-role='popup'>
               <ul data-role="listview" class="listview" data-icon="false">
                 <li><%= link_to "Logout", logout_path %></li>
                 <li><%= link_to "View Profile", user_path(current_user) %></li>
@@ -48,7 +49,7 @@
         <div class="ui-grid-b">
           <div class="ui-block-a" style="text-align: left;">
             <%= link_to user_path current_user do %>
-              <i class="fa fa-smile-o fa-4x"></i>
+              <i class="fa fa-users fa-4x"></i>
             <% end %>
           </div>
           <div class="ui-block-b" style="text-align: center;">

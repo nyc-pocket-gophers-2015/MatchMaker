@@ -1,27 +1,26 @@
-<img src="<%= @user.picture_url %>">
-<div>
-  <p>Name: <%= @user.name %></p>
-  <p>Age: <%= @user.age %></p>
-  <p>Bio: <%= @user.bio %></p>
-  <p>Preference: <%= @user.preferred_gender %><p>
-  <p>Age Preference: <%= @user.preferred_age_low%> - <%= @user.preferred_age_high %></p>
+<div class='center'>
+  <% if current_user.can_be_friends(@user) %>
+    <%= link_to user_friendships_path(user_id: @user.id, friendship: { user_id: current_user.id, friend_id: @user.id }), method: 'post' do %>
+      <i class="fa fa-user-plus fa-2x"> Add Friend</i>
+    <% end %>
+  <% end %>
+  <div class="polaroid center">
+    <p><%= @user.name %>, <%= @user.age%></p>
+    <%= gravatar_for @user, 200 %>
+  </div>
+  <h4 class="bio">About me:</h4>
+  <p class="bio"><%= @user.bio %></p>
 </div>
 
-<% if current_user.can_be_friends(@user) %>
-  <%= link_to "Send Friend Request", user_friendships_path(user_id: @user.id, friendship: { user_id: current_user.id, friend_id: @user.id }), method: 'post' %>
-<% end %>
-
-<% if current_user == @user %>
+<!-- <% if current_user == @user %>
   <p>Pending Friend Requests</p>
   <% @user.pending_friendships.each do |friendship| %>
     <%= form_tag user_friendship_path(id: friendship.id, user_id: @user.id, friendship: { status: "approved" }), method: 'put' do %>
       <%= submit_tag friendship.user.name %>
     <% end %>
   <% end %>
-
-  <%= link_to "Friends List", user_friendships_path(user_id: @user.id) %>
 <% end %>
 
 <% if current_user.is_friends(@user) %>
   <%= link_to "Ban Friend", user_friendship_path(id: current_user.friendship(@user), user_id: @user.id, friendship: { status: "banned" } ), method: 'put' %>
-<% end %>
+<% end %> -->

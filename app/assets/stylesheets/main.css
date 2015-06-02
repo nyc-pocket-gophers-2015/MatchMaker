@@ -22,4 +22,52 @@ a:hover {
 
 .ui-content {
   height: 400px;
+  color: #888;
+}
+
+.polaroid {
+  position: relative;
+  width: 220px;
+}
+
+.polaroid img {
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+     -moz-box-shadow: 3px 3px 3px #777;
+          box-shadow: 3px 3px 3px #777;
+          padding-bottom: 5px;
+}
+
+.polaroid p {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+  font: 400 18px/1 'Kaushan Script', cursive;
+  color: #ff605d;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bio {
+  margin: 0 auto;
+  text-align: left;
+  margin-top: 15px;
+  font-family: 'Merriweather', serif;
+  width: 60%;
+}
+
+h4.bio {
+  color: #ff605d;
+}
+p.bio {
+  text-indent: 15px;
+}
+
+.footer {
+  padding-top: 10px !important;
 }
