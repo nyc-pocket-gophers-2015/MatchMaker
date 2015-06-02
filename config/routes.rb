@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get 'confirmed', to: 'pairings#confirmed'
 
   get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+  # post '/login' => 'sessions#create'
+  # get '/logout' => 'sessions#destroy'
 
   get '/invite' => 'users#invite'
 
@@ -22,4 +22,9 @@ Rails.application.routes.draw do
       post :reply
     end
   end
+
+match 'auth/:provider/callback' => 'sessions#create', via: [:get, :post]
+match 'auth/failure' => redirect('/'), via: [:get, :post]
+match 'signout' => 'sessions#destroy', as: 'signout', via: [:get, :post]
+
 end
