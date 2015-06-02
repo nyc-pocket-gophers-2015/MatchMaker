@@ -16,6 +16,8 @@ class PairingsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @pairing = Pairing.new(pairing_params)
     if @pairing.save
+      @vote = Vote.create(user_id: current_user.id, pairing_id: @pairing.id, score: 1)
+      @pairing.votes << @vote
       @match = Match.create(user_id: current_user.id)
       @pairing.update_attributes(match_id: @match.id)
       redirect_to new_pairing_path(user_id: current_user.id)
@@ -33,6 +35,7 @@ class PairingsController < ApplicationController
     @pairing = Pairing.find_by(id: params[:id])
     @match_bot = User.find_by(name: "Matchmaker")
     if @pairing.match.update_attributes(matcher_id: current_user.id)
+      @pairing.votes.build(user_id: current_user.id, score: params[:score]).save
       @match_bot.send_message([@pairing.user, @pairing.pair], "Congrats, You have been matched.", "no subject").conversation
       redirect_to new_pairing_path(user_id: current_user.id)
     else

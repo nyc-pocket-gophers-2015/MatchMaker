@@ -1,13 +1,19 @@
 <%= image_tag @pairing.user.picture_url %><%= image_tag @pairing.pair.picture_url %>
 <div>
   <% if @pairing.id %>
-    <%= link_to "No", rejected_pairings_path(user_id: current_user.id, pairing_id: @pairing.id), method: 'post' %>
+    <%= form_for @pairing do |f| %>
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :pair_id %>
+      <%= hidden_field_tag :score, -1 %>
+      <%= f.submit "No" %>
+    <% end %>
   <% else %>
     <a href="<%= new_pairing_path(user_id: current_user.id) %>" data-ajax="false" >link</a>
   <% end %>
   <%= form_for @pairing do |f| %>
     <%= f.hidden_field :user_id %>
     <%= f.hidden_field :pair_id %>
+    <%= hidden_field_tag :score, 1 %>
     <%= f.submit "Yes" %>
   <% end %>
 </div>

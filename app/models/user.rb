@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :inverse_matchers, through: :inverse_matches, source: :user
 
   has_many :rejected_pairings
+  has_many :votes
 
   validates :name, :email, :password_digest, :gender, presence: true
   validates :email, uniqueness: true
