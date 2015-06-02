@@ -15,3 +15,11 @@ a:hover {
   position: fixed;
   top: 75px;
 }
+
+.twitter-typeahead {
+  width: 100%;
+}
+
+.ui-content {
+  height: 400px;
+}
