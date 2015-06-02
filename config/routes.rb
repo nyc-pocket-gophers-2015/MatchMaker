@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+  get '/cur_user' => 'notifications#cur_user'
+  post '/notifications/create' => 'notifications#create'
 
   get '/invite' => 'users#invite'
   post '/invite' => 'users#send_invite'
