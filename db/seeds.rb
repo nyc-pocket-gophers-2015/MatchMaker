@@ -2,7 +2,7 @@ emails = [
 ["alex.taber0@gmail.com","Male"],
 ["aris.a.perez@gmail.com", "Male"],
 ["me@brendanmiranda.com", "Male"],
-["doralypantaleon@gmail.com", "Female" ],
+["doralyp@me.com", "Female" ],
 ["echenique11@gmail.com", "Male"],
 ["scottbwarner@gmail.com", "Male"],
 ["sid.watal@gmail.com", "Male"],
