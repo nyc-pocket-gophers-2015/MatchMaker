@@ -3,7 +3,8 @@
   <% if @pairing.id %>
     <%= link_to "No", rejected_pairings_path(user_id: current_user.id, pairing_id: @pairing.id), method: 'post' %>
   <% else %>
-    <%= link_to "No", new_pairing_path(user_id: current_user.id) %>
+    <a href="<%= new_pairing_path(user_id: current_user.id) %>" data-ajax="false" >No</a>
+
   <% end %>
   <%= form_for @pairing do |f| %>
     <%= f.hidden_field :user_id %>

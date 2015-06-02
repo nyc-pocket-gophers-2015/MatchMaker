@@ -1,3 +1,5 @@
+
+
 $.ajax({
   url: '/users',
   method: 'GET'
