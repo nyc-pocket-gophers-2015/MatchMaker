@@ -1,3 +1,17 @@
 .message {
   margin-bottom: 10px;
 }
+
+a {
+  color: #ff605d !important;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff0703 !important;
+}
+
+#popupNested {
+  position: fixed;
+  top: 75px;
+}

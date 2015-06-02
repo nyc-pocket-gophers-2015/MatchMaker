@@ -8,20 +8,62 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js'></script>
 </head>
 <body>
-  <p><%= flash[:warn] %></p>
-  <p><%= flash[:notice] %></p>
-  <p><%= flash[:error] %></p>
   <% if current_user %>
-  <%= link_to "Home", root_path %>
-    <%= form_tag '/logout', method: 'get' do %>
-      <%= submit_tag "logout" %>
-    <% end %>
-  <li><%= link_to 'Your Conversations', conversations_path %></li>
+  <div data-role="page" id="pageone">
+    <div data-role="header" data-position="fixed">
+      <div class="ui-grid-b">
+        <div class="ui-block-a" style="text-align: left;">
+          <%= link_to root_path do %> <!-- root path until search implemented -->
+            <i class="fa fa-search fa-4x"></i>
+          <% end %>
+        </div>
+        <div class="ui-block-b" style="text-align: center;">
+          <%= link_to root_path do %>
+            <span class="logo-text middle-item">MM</span>
+          <% end %>
+        </div>
+        <div class="ui-block-c" style="text-align: right;">
+          <i class="fa fa-bars fa-4x"></i>
+        </div>
+      </div><!-- /grid-a -->
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <p><%= flash[:warn] %></p>
+        <p><%= flash[:notice] %></p>
+        <p><%= flash[:error] %></p>
+        <% if current_user %>
+          <%= form_tag '/logout', method: 'get' do %>
+            <%= submit_tag "logout" %>
+          <% end %>
+        <% else %>
+          <%= link_to "Home", login_path %>
+        <% end %>
+
+      <%= yield %>
+
+    <div class='footer' data-position="fixed" data-role="footer">
+      <div class="ui-grid-b">
+        <div class="ui-block-a" style="text-align: left;">
+          <%= link_to user_path current_user do %>
+            <i class="fa fa-smile-o fa-4x"></i>
+          <% end %>
+        </div>
+        <div class="ui-block-b" style="text-align: center;">
+          <%= link_to new_pairing_path user_id: current_user.id  do %>
+            <i class="fa fa-heartbeat fa-4x"></i>
+          <% end %>
+        </div>
+        <div class="ui-block-c" style="text-align: right;">
+          <%= link_to conversations_path user_id: current_user.id  do %>
+            <i class="fa fa-inbox fa-4x"></i>
+          <% end %>
+        </div>
+      </div><!-- /grid-a -->
+    </div>
+  </div>
   <% else %>
-    <%= link_to "Home", login_path %>
+    <%= render "sessions/new", layout: false %>
   <% end %>
-
-<%= yield %>
-
 </body>
 </html>
