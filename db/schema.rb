@@ -119,6 +119,14 @@ ActiveRecord::Schema.define(version: 20150602164331) do
     t.datetime "oauth_expires_at"
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "pairing_id"
+    t.integer  "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
