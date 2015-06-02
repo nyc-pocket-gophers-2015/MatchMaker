@@ -12,14 +12,7 @@
   <p class="bio"><%= @user.bio %></p>
 </div>
 
-<!-- <% if current_user == @user %>
-  <p>Pending Friend Requests</p>
-  <% @user.pending_friendships.each do |friendship| %>
-    <%= form_tag user_friendship_path(id: friendship.id, user_id: @user.id, friendship: { status: "approved" }), method: 'put' do %>
-      <%= submit_tag friendship.user.name %>
-    <% end %>
-  <% end %>
-<% end %>
+<!--
 
 <% if current_user.is_friends(@user) %>
   <%= link_to "Ban Friend", user_friendship_path(id: current_user.friendship(@user), user_id: @user.id, friendship: { status: "banned" } ), method: 'put' %>
