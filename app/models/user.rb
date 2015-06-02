@@ -18,10 +18,9 @@ class User < ActiveRecord::Base
 
   has_many :rejected_pairings
 
-  validates :name, :email, :password_digest, :birthday, :gender, :location, :preferred_gender, presence: true
+  validates :name, :email, :password_digest, :gender, presence: true
   validates :email, uniqueness: true
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
-  validate :validate_age
 
   def all_friends
     return (friends + inverse_friends)
@@ -97,4 +96,26 @@ class User < ActiveRecord::Base
     end
     return nil
   end
+
+  def self.from_omniauth(auth)
+    pp auth
+    user = find_by(provider: auth["provider"], uid: auth["uid"])
+    if !user
+      user = User.new
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+    end
+    user.name = auth.info.name
+    user.email = auth.info.email
+    user.picture_url = auth.info.image
+    user.gender = auth.extra.raw_info.gender
+    user.location = auth.extra.raw_info.locale
+    user.picture_url = auth.info.image
+    user.password = "123"
+    user.oauth_token = auth.credentials.token
+    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    user.save!
+    user
+  end
+
 end

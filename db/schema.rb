@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601131450) do
+ActiveRecord::Schema.define(version: 20150602140701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20150601131450) do
   end
 
   create_table "users", force: :cascade do |t|
+<<<<<<< HEAD
     t.string   "email",                            null: false
     t.string   "password_digest",                  null: false
     t.string   "name",                             null: false
@@ -113,6 +114,25 @@ ActiveRecord::Schema.define(version: 20150601131450) do
     t.integer  "preferred_age_high", default: 100
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+=======
+    t.string   "email",              null: false
+    t.string   "password_digest",    null: false
+    t.string   "name",               null: false
+    t.date     "birthday"
+    t.string   "gender",             null: false
+    t.string   "location"
+    t.string   "picture_url"
+    t.text     "bio"
+    t.string   "preferred_gender"
+    t.integer  "preferred_age_low"
+    t.integer  "preferred_age_high"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+>>>>>>> sets up facebook login and user creation with facebook
   end
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
