@@ -1,7 +1,7 @@
 <div class='center'>
   <% if current_user.can_be_friends(@user) %>
     <%= link_to user_friendships_path(user_id: @user.id, friendship: { user_id: current_user.id, friend_id: @user.id }), method: 'post' do %>
-      <i class="fa fa-user-plus fa-2x"> Add Friend</i>
+      <i class="fa fa-user-plus fa-1x"> Add Friend</i>
     <% end %>
   <% end %>
   <div class="polaroid center">
@@ -13,5 +13,8 @@
 </div>
 
 <% if current_user.is_friends(@user) %>
-  <%= link_to "Ban Friend", user_friendship_path(id: current_user.friendship(@user), user_id: @user.id, friendship: { status: "banned" } ), method: 'put' %>
+  <%= link_to user_friendship_path(id: current_user.friendship(@user), user_id: @user.id, friendship: { status: "banned" }), method: 'put' do %>
+    <i class="fa fa-ban fa-1x"> Block</i>
+  <% end %>
 <% end %>
+

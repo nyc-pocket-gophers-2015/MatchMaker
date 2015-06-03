@@ -80,6 +80,7 @@ div.ui-block-b {
   margin-top: 5px;
 }
 
+
 .pair1 {
   float: left;
   color: #888;
@@ -235,4 +236,11 @@ ul.friends-list {
 
 .dd-notification-li {
   color: #ff605d !important;
+}
+
+.fa-ban {
+  text-align: center !important;
+  display: block;
+  padding-top: 10px;
+  width: 100%;
 }
