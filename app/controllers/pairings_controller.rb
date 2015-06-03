@@ -40,8 +40,11 @@ class PairingsController < ApplicationController
     if @pairing
       @pairing.votes.build(user_id: current_user.id, score: params[:score]).save
       if @pairing.is_approved
-        trigger_pairing_notification(@pairing.user, @pairing.pair)
-        trigger_pairing_notification(@pairing.pair, @pairing.user)
+        generate_notification(@pairing.user, "Congrats, your friends have just matched you with #{@pairing.pair.name}!")
+        generate_notification(@pairing.pair, "Congrats, your friends have just matched you with #{@pairing.user.name}!")
+        @pairing.voted_yes.each do |user|
+          generate_notification(user, "What do ya know, your suggestion of #{@pairing.user.name} and #{@pairing.pair.name} resulted in a match!")
+        end
       end
       # @match_bot.send_message([@pairing.user, @pairing.pair], "Congrats, You have been matched.", "no subject").conversation
       redirect_to new_pairing_path(user_id: current_user.id)
@@ -62,9 +65,10 @@ class PairingsController < ApplicationController
     params.require(:pairing).permit(:user_id, :pair_id)
   end
 
-  def trigger_pairing_notification(user, pair)
+  def generate_notification(user, message)
+    Notification.create(user_id: user.id, content: message)
     Pusher.trigger("notifications#{user.id}", 'new_notification', {
-      message: "You have been matched with #{pair.name}"
+      message: message
     })
   end
 end
