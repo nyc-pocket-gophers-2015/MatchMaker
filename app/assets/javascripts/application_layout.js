@@ -6,6 +6,7 @@ $(document).ready(function(){
   $('.ui-content').hide().fadeIn(500);
   $('.pairing-title').css({ opacity: 1});
   $('.footer').css({ opacity: 1});
+  $('.notification').hide();
   $(document.body).delegate("form",'submit',function(e){
     $(this).attr("data-ajax", "false");
   });

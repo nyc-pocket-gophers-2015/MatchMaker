@@ -186,3 +186,24 @@ div.ui-block-a {
 .site-red {
   color: #ff605d;
 }
+
+.notification {
+  position: fixed;
+  border: 10px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+     -moz-box-shadow: 3px 3px 3px #777;
+          box-shadow: 3px 3px 3px #777;
+          padding-bottom: 5px;
+  margin:auto;
+    background: white;
+    border-radius:3px;
+  backface-visibility:hidden;
+  z-index: 100;
+  margin-bottom: 4px;
+  text-align: center;
+  font: 400 18px/1 'Kaushan Script', cursive;
+  color: #ff605d;
+  font-size: 3em;
+  width: 80%;
+  margin: 0 auto;
+}

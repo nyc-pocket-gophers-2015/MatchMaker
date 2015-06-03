@@ -15,10 +15,10 @@ $.ajax({
   notificationsChannel.bind('new_notification', function(notification){
     // assign the notification's message to a <div></div>
     var message = notification.message;
-    $('.notification').show()
+    $('.notification').fadeIn(1000)
     $('.notification').text(message);
     setTimeout(function() {
-      $('div.notification').hide()
+      $('div.notification').fadeOut(1000)
     }, 3000)
   });
 
