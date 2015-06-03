@@ -149,7 +149,7 @@ div.ui-block-b {
 }
 
 .ui-content {
-  margin-top: 10px;
+  margin-top: 6px;
   min-height: 100%;
   color: #888;
 }
@@ -199,10 +199,10 @@ div.ui-block-b {
 .notification {
   color: #F5F5F5;
   font-family: sans-serif;
-  font-size: 1.2em;
+  font-size: 1em;
   z-index: 100;
   text-align: center;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
 }
