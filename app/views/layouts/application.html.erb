@@ -13,7 +13,7 @@
 <body>
   <% if current_user %>
     <div data-role="page" id="pageone">
-      <div data-role="header" data-position="fixed">
+      <div class="header" data-role="header" data-position="fixed">
         <div class="ui-grid-b">
           <div class="ui-block-a" style="text-align: left;">
             <%= link_to users_path, rel: :external do  %> <!-- root path until search implemented -->
@@ -45,6 +45,8 @@
 
         <%= yield %>
 
+      </div>
+
       <div class='footer' data-position="fixed" data-role="footer">
         <div class="ui-grid-b" style="text-align: left;">
           <div class="ui-block-a">
@@ -65,8 +67,8 @@
         </div><!-- /grid-a -->
       </div>
     </div>
-  <% else %>
-    <%= yield %>
-  <% end %>
+    <% else %>
+      <%= yield %>
+    <% end %>
 </body>
 </html>

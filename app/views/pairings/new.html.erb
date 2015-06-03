@@ -1,32 +1,39 @@
 <div class="center">
   <h2 class="pairing-title">Are we a good couple?</h2>
-  <div class="pair1">
-    <%= gravatar_for @pairing.user, 200 %>
-    <div class="voting-control vote-control-no">
-      <i class="fa fa-times fa-4x"></i>
+  <div class="pairing-body">
+    <div class="pair1">
+      <%= gravatar_for @pairing.user, 200 %>
+      <br>
+      <span class='site-red'><%= @pairing.user.name %></span>
+      <div class="voting-control vote-control-no">
+        <i class="fa fa-times fa-4x"></i>
+      </div>
     </div>
-  </div>
-  <div class="pair2">
-    <%= gravatar_for @pairing.pair, 200 %>
-    <div class="voting-control vote-control-yes">
-      <i class="fa fa-check fa-4x"></i>
+    <div class="pair2">
+      <%= gravatar_for @pairing.pair, 200 %>
+      <br>
+      <span class="site-red"><%= @pairing.pair.name %></span>
+      <div class="voting-control vote-control-yes">
+        <i class="fa fa-check fa-4x"></i>
+      </div>
     </div>
+    <div class="clear"></div>
   </div>
-  <div class="clear"></div>
-</div>
 
-<div class="voting-forms">
-  <%= form_for @pairing, html: {class: "vote-form-no"} do |f| %>
-    <%= f.hidden_field :user_id %>
-    <%= f.hidden_field :pair_id %>
-    <%= hidden_field_tag :score, -1 %>
-    <%= f.submit "No" %>
-  <% end %>
+  <div class="voting-forms">
+    <%= form_for @pairing, html: {class: "vote-form-no"} do |f| %>
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :pair_id %>
+      <%= hidden_field_tag :score, -1 %>
+      <%= f.submit "No" %>
+    <% end %>
 
-  <%= form_for @pairing, html: {class: "vote-form-yes"} do |f| %>
-    <%= f.hidden_field :user_id %>
-    <%= f.hidden_field :pair_id %>
-    <%= hidden_field_tag :score, 1 %>
-    <%= f.submit "Yes" %>
-  <% end %>
+    <%= form_for @pairing, html: {class: "vote-form-yes"} do |f| %>
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :pair_id %>
+      <%= hidden_field_tag :score, 1 %>
+      <%= f.submit "Yes" %>
+    <% end %>
+  </div>
+
 </div>
