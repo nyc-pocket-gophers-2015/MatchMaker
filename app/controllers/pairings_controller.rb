@@ -36,10 +36,17 @@ class PairingsController < ApplicationController
 
   def update
     @pairing = Pairing.find_by(id: params[:id])
-    @match_bot = User.find_by(name: "Matchmaker")
+    # @match_bot = User.find_by(name: "Matchmaker")
     if @pairing
       @pairing.votes.build(user_id: current_user.id, score: params[:score]).save
-      @match_bot.send_message([@pairing.user, @pairing.pair], "Congrats, You have been matched.", "no subject").conversation
+      if @pairing.is_approved
+        generate_notification(@pairing.user, "Congrats, your friends have just matched you with #{@pairing.pair.name}!")
+        generate_notification(@pairing.pair, "Congrats, your friends have just matched you with #{@pairing.user.name}!")
+        @pairing.voted_yes.each do |user|
+          generate_notification(user, "What do ya know, your suggestion of #{@pairing.user.name} and #{@pairing.pair.name} resulted in a match!")
+        end
+      end
+      # @match_bot.send_message([@pairing.user, @pairing.pair], "Congrats, You have been matched.", "no subject").conversation
       redirect_to new_pairing_path(user_id: current_user.id)
     else
       flash[:warn] = "Something went wrong, please try again"
@@ -58,25 +65,10 @@ class PairingsController < ApplicationController
     params.require(:pairing).permit(:user_id, :pair_id)
   end
 
-  # def generate_pair
-  #   users_friends = @user.all_approved_friends
-  #   return nil if users_friends.length < 1
-  #   pair1 = users_friends[rand(0...users_friends.length)]
-  #   pair2 = nil
-  #   #algorithm hereabouts
-  #   until can_be_pair(pair1, pair2)
-  #     pair2 = User.find_by(id: rand(0...User.all.count))
-  #   end
-  #   Pairing.new(user_id: pair1.id, pair_id: pair2.id)
-  # end
-
-  # def can_be_pair(pair1,pair2)
-  #   return false if pair2 == nil
-  #   return false if pair1 == pair2
-  #   return false unless pair1.preferred_gender == pair2.gender || pair1.preferred_gender == "All"
-  #   return false unless pair2.preferred_gender == pair1.gender || pair2.preferred_gender == "All"
-  #   return false if !pair1.preferred_age_range.include?(pair2.age)
-  #   return false if pair2 == @user
-  #   true
-  # end
+  def generate_notification(user, message)
+    Notification.create(user_id: user.id, content: message)
+    Pusher.trigger("notifications#{user.id}", 'new_notification', {
+      message: message
+    })
+  end
 end
