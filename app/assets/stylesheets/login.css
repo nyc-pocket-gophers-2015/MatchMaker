@@ -1,3 +1,7 @@
+body {
+  background-color: #FFFFFF;
+}
+
 .logo-login-image {
   position: relative;
   font-family: 'Lato', sans-serif;
@@ -13,19 +17,33 @@
   font-family: 'Lato', sans-serif;
 }
 
-.ui-btn ui-input-btn ui-corner-all ui-shadow {
-  width: 63%;
-  margin-left: auto;
-  margin-right: auto;
+.signup {
+  font-family: 'Lato', sans-serif;
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.signup a {
+  color: #FFFFFF !important;
   background-color: red;
-  color: white;
+  padding: 15px 100px;
+}
+
+#sign_in {
   font-family: 'Lato', sans-serif;
+  display: block;
+  text-align: center;
+  width: 40% !important;
+  margin: auto !important;
+  max-width: 80% !important;
 }
 
-#signup {
-  font-family: 'Lato', sans-serif;
+#sign_in a {
+  color: #FFFFFF !important;
+  background-color: red;
+  padding: 15px 100px;
 }
 
-#facebook {
 
-}
+
