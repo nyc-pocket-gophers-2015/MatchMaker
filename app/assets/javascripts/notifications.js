@@ -2,6 +2,7 @@ $.ajax({
   url: '/cur_user',
   method: 'GET'
 }).done(function(response){
+  $('div.notification').hide()
 
 
   var pusher = new Pusher('1115c4a31fc8d8f80c44');
@@ -14,7 +15,8 @@ $.ajax({
   notificationsChannel.bind('new_notification', function(notification){
       // assign the notification's message to a <div></div>
       var message = notification.message;
-      $('div.notification').text(message);
+      $('.notification').show()
+      $('.notification').text(message);
   });
 
   $('.submit-notification').on('click', sendNotification);
@@ -23,11 +25,14 @@ $.ajax({
 var sendNotification = function(){
   console.log("FIRED")
 
-    // get the contents of the input
-    // var text = $('input.create-notification').val();
+  // get the contents of the input
+  // var text = $('input.create-notification').val();
 
-    // POST to our server
-    $.post('/notifications/create', {message: "text"}).success(function(){
-        console.log('Notification sent!');
-    });
+  // POST to our server
+  $.post('/notifications/create', {message: "text"}).success(function(){
+    setTimeout(function() {
+      $('div.notification').hide()
+    }, 2000)
+    console.log('Notification sent!');
+  });
 };
