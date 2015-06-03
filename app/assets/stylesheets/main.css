@@ -213,3 +213,7 @@ div.ui-block-b {
 ul.friends-list {
   list-style-type: none;
 }
+
+.logo-image {
+  width: 50px;
+}
