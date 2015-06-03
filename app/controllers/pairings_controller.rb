@@ -12,6 +12,11 @@ class PairingsController < ApplicationController
       random_pairing = nil
     end
     @pairing = pending_pairing || random_pairing
+    if request.xhr?
+      respond_to do |format|
+        format.html {  render action: "new", layout: false }
+      end
+    end
     unless @pairing
       flash[:warn] = "Unable to generate a new pair. Try adding some friends!"
       redirect_to root_path
@@ -19,11 +24,15 @@ class PairingsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: current_user.id)
     @pairing = Pairing.new(pairing_params)
     if @pairing.save
       @pairing.votes.build(user_id: current_user.id, score: params[:score]).save
-      redirect_to new_pairing_path(user_id: current_user.id)
+      if request.xhr?
+        render text: "it worked"
+      else
+        redirect_to new_pairing_path(user_id: current_user.id)
+      end
     else
       flash[:warn] = "Unable to generate a new pair. Try adding some friends!"
       redirect_to root_path
@@ -47,7 +56,11 @@ class PairingsController < ApplicationController
         end
       end
       # @match_bot.send_message([@pairing.user, @pairing.pair], "Congrats, You have been matched.", "no subject").conversation
-      redirect_to new_pairing_path(user_id: current_user.id)
+      if request.xhr?
+        render text: "it worked"
+      else
+        redirect_to new_pairing_path(user_id: current_user.id)
+      end
     else
       flash[:warn] = "Something went wrong, please try again"
       redirect_to :back
