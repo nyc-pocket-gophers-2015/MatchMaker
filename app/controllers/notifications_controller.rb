@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
   end
 
   def create
-    message = "Apples and oranges are cool!"
+    message = "Apples and oranges are super duper megaly awesome fantastic amazing huzzah cool!"
 
     Pusher.trigger("notifications#{current_user.id}", 'new_notification', {
         message: message
