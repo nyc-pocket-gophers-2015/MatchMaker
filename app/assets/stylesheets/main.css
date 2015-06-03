@@ -206,10 +206,10 @@ div.ui-block-b {
   z-index: 100;
   text-align: center;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 30, 30, 0.8);
   position: fixed;
+  margin-bottom: 4px;
 }
-
 ul.friends-list {
   list-style-type: none;
 }
