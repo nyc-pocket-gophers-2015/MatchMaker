@@ -30,7 +30,6 @@ gem 'will_paginate'
 gem 'twitter-typeahead-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'mailboxer', github: 'lacco/mailboxer'
 gem 'gravatar_image_tag'
 gem 'faker'
 gem "font-awesome-rails"

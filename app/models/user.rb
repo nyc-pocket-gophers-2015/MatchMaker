@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  acts_as_messageable
   has_secure_password
   has_many :friendships
   has_many :friends, through: :friendships
@@ -51,9 +50,6 @@ class User < ActiveRecord::Base
 
   def all_approved_friendships
     all_friendships.select { |friendship| friendship.status == "approved" }
-  end
-
-  def mailboxer_email(object)
   end
 
   def can_be_friends(user)
