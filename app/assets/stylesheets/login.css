@@ -1,0 +1,31 @@
+.logo-login-image {
+  position: relative;
+  font-family: 'Lato', sans-serif;
+  text-align: center !important;
+  margin: 0 auto !important;
+  margin-top: 30px !important;
+}
+
+.ui-input-text {
+  width: 70%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  font-family: 'Lato', sans-serif;
+}
+
+.ui-btn ui-input-btn ui-corner-all ui-shadow {
+  width: 63%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: red;
+  color: white;
+  font-family: 'Lato', sans-serif;
+}
+
+#signup {
+  font-family: 'Lato', sans-serif;
+}
+
+#facebook {
+
+}
