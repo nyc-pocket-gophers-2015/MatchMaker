@@ -12,8 +12,6 @@
   <p class="bio"><%= @user.bio %></p>
 </div>
 
-<!--
-
 <% if current_user.is_friends(@user) %>
   <%= link_to "Ban Friend", user_friendship_path(id: current_user.friendship(@user), user_id: @user.id, friendship: { status: "banned" } ), method: 'put' %>
-<% end %> -->
+<% end %>

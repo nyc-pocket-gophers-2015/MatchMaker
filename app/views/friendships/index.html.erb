@@ -1,14 +1,27 @@
-<p>Pending Friend Requests</p>
-<% current_user.pending_friendships.each do |friendship| %>
-  <%= form_tag user_friendship_path(id: friendship.id, user_id: current_user.id, friendship: { status: "approved" }), method: 'put' do %>
-    <%= submit_tag friendship.user.name %>
+<div class='center'>
+  <% if @friends.length > 0 %>
+    <% if current_user.pending_friendships.length > 0 %>
+
+      <h3>Pending Friend Requests</h3>
+
+      <% current_user.pending_friendships.each do |friendship| %>
+
+        <%= form_tag user_friendship_path(id: friendship.id, user_id: current_user.id, friendship: { status: "approved" }), method: 'put' do %>
+          <%= submit_tag friendship.user.name %>
+        <% end %>
+
+      <% end %>
+
+    <% end %>
+
+    <h2 class="site-red">Friends List</h2>
+
+    <% @friends.each do |friend| %>
+      <ul class='friends-list'>
+        <li><%= gravatar_for(friend, size = 50) %><%= " #{friend.name}" %></li>
+      </ul>
+    <% end %>
+  <% else %>
+    <p>Please make some friends</p>
   <% end %>
-<% end %>
-
-<h1>Friends List</h1>
-
-<% @friends.each do |friend| %>
-  <ul>
-    <li><img src="<%= friend.picture_url %>"><%= friend.name %></li>
-  </ul>
-<% end %>
+</div>
