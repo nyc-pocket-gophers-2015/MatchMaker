@@ -15,11 +15,11 @@ $.ajax({
   notificationsChannel.bind('new_notification', function(notification){
     // assign the notification's message to a <div></div>
     var message = notification.message;
-    $('.notification').show()
     $('.notification').text(message);
+    $('.notification').slideDown()
     setTimeout(function() {
-      $('div.notification').hide()
-    }, 3000)
+      $('div.notification').slideUp()
+    }, 6000)
   });
 
   $('.submit-notification').on('click', sendNotification);

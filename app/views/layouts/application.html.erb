@@ -38,13 +38,12 @@
           </div>
         </div><!-- /grid-a -->
       </div>
+      <div class="notification"></div>
 
       <div data-role="main" class="ui-content">
           <p><%= flash[:warn] %></p>
           <p><%= flash[:notice] %></p>
           <p><%= flash[:error] %></p>
-          <div class="notification"></div>
-
         <%= yield %>
 
       </div>
