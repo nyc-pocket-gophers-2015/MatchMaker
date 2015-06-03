@@ -1,33 +1,13 @@
 emails = [
-["alex.taber0@gmail.com","Male"],
-["aris.a.perez@gmail.com", "Male"],
-["me@brendanmiranda.com", "Male"],
+["alex.taber0@gmail.com", "Male"],
 ["doralyp@me.com", "Female" ],
-["echenique11@gmail.com", "Male"],
-["scottbwarner@gmail.com", "Male"],
-["sid.watal@gmail.com", "Male"],
 ["ayme.alvarez@gmail.com", "Female"],
 ["angiegrace84@gmail.com", "Female"],
-["nlee43@gmail.com", "Male"],
-["stauntonsample@gmail.com","Male"],
-["manentea@gmail.com", "Male"],
 ["samantha.belkin@gmail.com", "Female"],
-["mmschneerson@gmail.com", "Male"],
-["marc.cardacci@gmail.com", "Male"],
-["lauris.bernhart@gmail.com", "Male" ],
 ["julia.castro@outlook.com", "Female"],
-["sixthand6th@gmail.com", "Male"],
-["sheld0ri@gmail.com"], "Male",
 ["gechrod@gmail.com", "Female"],
-["arthur.ross.wilson@gmail.com", "Male"],
-["bkmorimoto@gmail.com", "Male"],
 ["deborah.a.milburn@gmail.com", "Female"],
-["ben.costolo@gmail.com", "Male"],
-["luciankahn@gmail.com", "Male"],
 ["tara.c.frye@gmail.com", "Female"],
-["charles.green88@gmail.com", "Male"],
-["imharrypark@gmail.com", "Male"],
-["cetswanson@gmail.com", "Male"],
 ["ayakokurushima@gmail.com", "Female"],
 ["ginny.w.martin@gmail.com", "Female"],
 ["grace.yasukawa@gmail.com", "Female"],
@@ -39,7 +19,37 @@ emails = [
 ["thegrandnumber@gmail.com", "Female"],
 ["mary.c.baylis@gmail.com", "Female"],
 ["jldennison@gmail.com", "Female"],
-["schmidtsusanr@gmail.com", "Female"]
+["schmidtsusanr@gmail.com", "Female"],
+["esm1018@gmail.com", "Female"],
+["tprabhakar@ucdavis.edu", "Female"],
+["kirsty.l.m@gmail.com", "Female"],
+["anna.m.macdonald@gmail.com", "Female"],
+["stephanielopez.sf@gmail.com", "Female"],
+["lauranyb@gmail.com", "Female"],
+["echenique11@gmail.com","Male"],
+["scottbwarner@gmail.com","Male"],
+["sid.watal@gmail.com", "Male"],
+["charles.green88@gmail.com","Male"],
+["imharrypark@gmail.com", "Male"],
+["cetswanson@gmail.com", "Male"],
+["ben.costolo@gmail.com", "Male"],
+["luciankahn@gmail.com", "Male"],
+["mmschneerson@gmail.com", "Male"],
+["marc.cardacci@gmail.com", "Male"],
+["sixthand6th@gmail.com", "Male"],
+["sheld0ri@gmail.com", "Male"],
+["arthur.ross.wilson@gmail.com", "Male"],
+["bkmorimoto@gmail.com", "Male"],
+["nlee43@gmail.com", "Male"],
+["stauntonsample@gmail.com","Male"],
+["manentea@gmail.com", "Male"],
+["lauris.bernhart@gmail.com", "Male"],
+["werbeckes@gmail.com", "Male"],
+["nathaniel.clapp@gmail.com", "Male"],
+["logandsprice@gmail.com", "Male"],
+["guilsa001@gmail.com", "Male"],
+["nguyennam9696@gmail.com", "Male"],
+["peterjacobson.nz@gmail.com", "Male"],
 ]
 
 def find_gravatar_url(user)
@@ -60,3 +70,10 @@ emails.each do |cur_email, gender|
 end
 
 User.create(name: "Matchmaker", email: "matchmaker@mm.com", birthday: Faker::Date.between(50.years.ago, 18.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: pref_gender)
+
+id = 3
+10.times do
+  Friendship.create(user_id: id, friend_id: 2, status: "pending")
+  id += 1
+end
+
