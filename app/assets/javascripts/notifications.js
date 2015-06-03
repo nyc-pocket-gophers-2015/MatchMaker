@@ -13,10 +13,13 @@ $.ajax({
 
   //do something with our new information
   notificationsChannel.bind('new_notification', function(notification){
-      // assign the notification's message to a <div></div>
-      var message = notification.message;
-      $('.notification').show()
-      $('.notification').text(message);
+    // assign the notification's message to a <div></div>
+    var message = notification.message;
+    $('.notification').show()
+    $('.notification').text(message);
+    setTimeout(function() {
+      $('div.notification').hide()
+    }, 3000)
   });
 
   $('.submit-notification').on('click', sendNotification);
@@ -30,9 +33,6 @@ var sendNotification = function(){
 
   // POST to our server
   $.post('/notifications/create', {message: "text"}).success(function(){
-    setTimeout(function() {
-      $('div.notification').hide()
-    }, 2000)
     console.log('Notification sent!');
   });
 };
