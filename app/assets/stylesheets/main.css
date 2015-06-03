@@ -200,13 +200,15 @@ div.ui-block-b {
 }
 
 .notification {
-  color: #F5F5F5;
+  color: rgba(48, -85, -102);
+  padding-bottom: 2px;
+  text-shadow: none;
   font-family: sans-serif;
-  font-size: 1em;
+  font-size: 1.15em;
   z-index: 100;
   text-align: center;
   width: 100%;
-  background-color: rgba(255, 30, 30, 0.8);
+  background-color: rgba(255, 30, 30, 0.94);
   position: fixed;
   margin-bottom: 4px;
 }
@@ -216,4 +218,21 @@ ul.friends-list {
 
 .logo-image {
   width: 50px;
+}
+
+#notification-list {
+  text-align: center;
+  margin: 0 auto !important;
+  width: 80% !important;
+  border: 1px solid #888;
+  border-radius: 6px;
+}
+
+#notification-list li {
+  color: #ff605d !important;
+  text-align: center !important;
+}
+
+.dd-notification-li {
+  color: #ff605d !important;
 }

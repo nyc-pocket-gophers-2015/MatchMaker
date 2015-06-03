@@ -76,6 +76,14 @@ class User < ActiveRecord::Base
     errors.add(:birthday, "Must be 18 years or older to register") if age < 18
   end
 
+  def get_recent_notifications(num)
+    notifications.order(created_at: :desc).limit(num)
+  end
+
+  def mark_notifications_as_seen
+    notifications.update_all(seen: true)
+  end
+
   def preferred_age_range
     (preferred_age_low..preferred_age_high)
   end

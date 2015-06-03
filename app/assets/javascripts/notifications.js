@@ -32,7 +32,7 @@ var sendNotification = function(){
   // var text = $('input.create-notification').val();
 
   // POST to our server
-  $.post('/notifications/create', {message: "text"}).success(function(){
+  $.post('/notifications', {message: "text"}).success(function(){
     console.log('Notification sent!');
   });
 };

@@ -5,13 +5,13 @@ Rails.application.routes.draw do
   end
   resources :pairings, only:[:create, :show, :destroy, :update, :new]
   resources :rejected_pairings, only: [:create]
+  resources :notifications, only: [:create, :index]
   get 'confirmed', to: 'pairings#confirmed'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   get '/cur_user' => 'notifications#cur_user'
-  post '/notifications/create' => 'notifications#create'
 
   get '/invite' => 'users#invite'
   post '/invite' => 'users#send_invite'
