@@ -18,7 +18,7 @@
 
     <% @friends.each do |friend| %>
       <ul class='friends-list'>
-        <li><%= gravatar_for(friend, size = 50) %><%= " #{friend.name}" %></li>
+        <li><%= link_to link_to gravatar_for(friend, size = 50), user_path(id: friend.id)  %><%= link_to " #{friend.name}", user_path(id: friend.id) %></li>
       </ul>
     <% end %>
   <% else %>
