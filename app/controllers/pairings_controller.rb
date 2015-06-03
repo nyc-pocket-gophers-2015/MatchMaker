@@ -23,6 +23,11 @@ class PairingsController < ApplicationController
     @pairing = Pairing.new(pairing_params)
     if @pairing.save
       @pairing.votes.build(user_id: current_user.id, score: params[:score]).save
+
+      Pusher.trigger("notifications#{@pairing.current_user.id}", 'new_notification', {
+        message: "You have been matched with #{@pairing.pair.name}"
+      })
+
       redirect_to new_pairing_path(user_id: current_user.id)
     else
       flash[:warn] = "Unable to generate a new pair. Try adding some friends!"
@@ -36,10 +41,13 @@ class PairingsController < ApplicationController
 
   def update
     @pairing = Pairing.find_by(id: params[:id])
-    @match_bot = User.find_by(name: "Matchmaker")
+    # @match_bot = User.find_by(name: "Matchmaker")
     if @pairing
       @pairing.votes.build(user_id: current_user.id, score: params[:score]).save
-      @match_bot.send_message([@pairing.user, @pairing.pair], "Congrats, You have been matched.", "no subject").conversation
+      Pusher.trigger("notifications#{@pairing.current_user.id}", 'new_notification', {
+        message: "You have been matched with #{@pairing.pair.name}"
+      })
+      # @match_bot.send_message([@pairing.user, @pairing.pair], "Congrats, You have been matched.", "no subject").conversation
       redirect_to new_pairing_path(user_id: current_user.id)
     else
       flash[:warn] = "Something went wrong, please try again"
