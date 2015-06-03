@@ -10,7 +10,11 @@ class NotificationsController < ApplicationController
     Pusher.trigger("notifications#{current_user.id}", 'new_notification', {
         message: message
     })
+    Notification.create(user_id: current_user.id, content: message, link: "/users/#{current_user.id}")
     render text: "It worked!"
   end
 
+  def index
+    @notifications = current_user.get_recent_notifications(50)
+  end
 end

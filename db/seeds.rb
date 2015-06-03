@@ -1,6 +1,7 @@
 emails = [
 ["alex.taber0@gmail.com", "Male"],
 ["doralyp@me.com", "Female" ],
+["me@brendanmiranda.com", "Male"],
 ["ayme.alvarez@gmail.com", "Female"],
 ["angiegrace84@gmail.com", "Female"],
 ["samantha.belkin@gmail.com", "Female"],

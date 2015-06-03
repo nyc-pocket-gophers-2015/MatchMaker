@@ -27,9 +27,9 @@
             <% end %>
           </div>
           <div class="ui-block-c" style="text-align: right;">
-            <a href='#popupDiv<%= @current_timestamp %>' data-rel="popup" data-transition="pop"><i class="fa fa-bars fa-4x"></i></a>
-            <div id='popupDiv<%= @current_timestamp %>' data-role='popup'>
-              <ul data-role="listview" class="listview" data-icon="false">
+            <a href='#popupDiv' data-rel="popup" data-transition="pop"><i class="fa fa-bars fa-4x"></i></a>
+            <div id='popupDiv' data-role='popup'>
+              <ul data-role="listview" class="listview dropdown" data-icon="false">
                 <li><%= link_to "Logout", logout_path %></li>
                 <li><%= link_to "Friends List", user_friendships_path(user_id: current_user.id) %></li>
                 <li><%= link_to "View Profile", user_path(current_user) %></li>
@@ -53,9 +53,20 @@
       <div class='footer' data-position="fixed" data-role="footer">
         <div class="ui-grid-b" style="text-align: left;">
           <div class="ui-block-a">
-            <%= link_to user_path current_user do %>
-              <i class="fa fa-bell-o fa-3x"></i>
-            <% end %>
+
+            <a href='#popupDivNot' data-rel="popup" data-transition="pop"><i class="fa fa-bell-o fa-3x"></i></a>
+            <div id='popupDivNot' data-role='popup'>
+              <ul data-role="listview" class="listview dropdown" data-icon="false">
+                <% current_user.get_recent_notifications(4).each do |notification| %>
+                  <li class="dd-notification-li">
+                    <a href="<%= notification.link %>">
+                      <%= notification.content %>
+                    </a>
+                  </li>
+                <% end %>
+                <li><%= link_to "See All Notifications", notifications_path %></li>
+              </ul>
+            </div><!-- /popup -->
           </div>
           <div class="ui-block-b" style="text-align: center;">
             <%= link_to new_pairing_path user_id: current_user.id  do %>
