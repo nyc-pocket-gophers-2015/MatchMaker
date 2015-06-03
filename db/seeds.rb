@@ -54,6 +54,9 @@ end
 emails.each do |cur_email, gender|
   user = User.create(name: Faker::Name.name, email: cur_email, password: "123", location: Faker::Address.city, gender: gender, birthday: Faker::Date.between(50.years.ago, 18.years.ago), bio: Faker::Hacker.say_something_smart, preferred_gender: pref_gender )
   user.update_attributes(picture_url: find_gravatar_url(user))
+  unless cur_email == "alex.taber0@gmail.com"
+    Friendship.create(user_id: 1, friend_id: user.id, status: "approved")
+  end
 end
 
 User.create(name: "Matchmaker", email: "matchmaker@mm.com", birthday: Faker::Date.between(50.years.ago, 18.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: pref_gender)

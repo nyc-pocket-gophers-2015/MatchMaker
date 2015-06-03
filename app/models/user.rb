@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_many :inverse_matches, class_name: "Match", foreign_key: "match_id"
   has_many :inverse_matchers, through: :inverse_matches, source: :user
 
-  has_many :rejected_pairings
+  has_many :notifications
   has_many :votes
 
   validates :name, :email, :password_digest, :gender, presence: true

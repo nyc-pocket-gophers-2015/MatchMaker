@@ -31,6 +31,10 @@ class Pairing < ActiveRecord::Base
     return false
   end
 
+  def voted_yes
+    votes.where(score: 1).map(&:user)
+  end
+
   def user_is_in_pairing(current_user)
     return true if user == current_user
     return true if pair == current_user
