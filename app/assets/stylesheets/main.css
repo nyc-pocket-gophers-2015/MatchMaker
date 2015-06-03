@@ -170,6 +170,7 @@ div.ui-block-b {
     font-size: 2em !important;
   }
   .fa-3x {
+    margin-top: 2px;
     font-size: 1.5em !important;
   }
 }
@@ -179,6 +180,7 @@ div.ui-block-b {
     font-size: 3em !important;
   }
   .fa-3x {
+    margin-top: 4px;
     font-size: 2.25em !important;
   }
 }
@@ -188,7 +190,8 @@ div.ui-block-b {
     font-size: 4em !important;
   }
   .fa-3x {
-    font-size: 3em !important;
+    margin-top: 5px;
+    font-size: 3.5em !important;
   }
 }
 
@@ -205,4 +208,8 @@ div.ui-block-b {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
+}
+
+ul.friends-list {
+  list-style-type: none;
 }

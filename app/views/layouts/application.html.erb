@@ -17,7 +17,7 @@
       <div class="header" data-role="header" data-position="fixed">
         <div class="ui-grid-b">
           <div class="ui-block-a" style="text-align: left;">
-            <%= link_to users_path, rel: :external do  %> <!-- root path until search implemented -->
+            <%= link_to users_path, rel: :external do  %>
               <i class="fa fa-search fa-4x"></i>
             <% end %>
           </div>
@@ -31,6 +31,7 @@
             <div id='popupDiv<%= @current_timestamp %>' data-role='popup'>
               <ul data-role="listview" class="listview" data-icon="false">
                 <li><%= link_to "Logout", logout_path %></li>
+                <li><%= link_to "Friends List", user_friendships_path(user_id: current_user.id) %></li>
                 <li><%= link_to "View Profile", user_path(current_user) %></li>
                 <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
               </ul>
@@ -52,7 +53,7 @@
         <div class="ui-grid-b" style="text-align: left;">
           <div class="ui-block-a">
             <%= link_to user_path current_user do %>
-              <i class="fa fa-users fa-3x"></i>
+              <i class="fa fa-bell-o fa-3x"></i>
             <% end %>
           </div>
           <div class="ui-block-b" style="text-align: center;">
