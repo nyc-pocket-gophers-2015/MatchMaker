@@ -17,7 +17,6 @@ emails = [
 ["ling.giang@gmail.com", "Female"],
 ["lkim3182@gmail.com", "Female"],
 ["sara.gilford@gmail.com", "Female"],
-["thegrandnumber@gmail.com", "Female"],
 ["mary.c.baylis@gmail.com", "Female"],
 ["jldennison@gmail.com", "Female"],
 ["schmidtsusanr@gmail.com", "Female"],
