@@ -68,6 +68,7 @@ class User < ActiveRecord::Base
 
   def age
     age = Date.today.year - birthday.year
+    age -= 1 if Date.today < birthday + age.years
   end
 
   def validate_age
