@@ -20,11 +20,6 @@ a:hover {
   width: 100%;
 }
 
-.ui-content {
-  height: 450px;
-  min-height: 100%;
-  color: #888;
-}
 
 .polaroid {
   position: relative;
@@ -80,12 +75,27 @@ div.ui-block-a {
 
 .pair1 {
   float: left;
-  color: red;
+  color: #888;
+  width: 49%;
+  display: inline;
 }
 
 .pair2 {
   float: right;
   color: green;
+  width: 49%;
+  display: inline;
+}
+
+.pair1 img {
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.pair2 img {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .clear {
@@ -94,8 +104,23 @@ div.ui-block-a {
 
 .voting-control {
   cursor: pointer;
-  margin-top: 100px;
-  border: 2px solid #ff605d;
+  margin-top: 50px;
+}
+
+.vote-control-no {
+  color: #888;
+  border: 2px solid #888;
+  width: 80%;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.vote-control-yes {
+  color: rgb(156,184,107);
+  border: 2px solid rgb(156,184,107);
+  width: 80%;
+  margin: auto;
+  margin-top: 40px;
 }
 
 .voting-forms {
@@ -104,5 +129,60 @@ div.ui-block-a {
 
 .pairing-title {
   font: 400 30px/1 'Kaushan Script';
+  color: #ff605d;
+}
+
+.pairing-body {
+  position: relative !important;
+}
+
+.header {
+  height: 11%;
+  position: fixed !important;
+}
+
+.ui-content {
+  min-height: 100%;
+  color: #888;
+}
+
+.footer {
+  height: 9%;
+  position: fixed !important;
+  bottom: 0;
+}
+
+.logo-text {
+  font-size: 3.5em;
+}
+
+@media screen and (min-height: 200px) {
+  .fa-4x, .logo-text {
+    font-size: 2em !important;
+  }
+  .fa-3x {
+    font-size: 1.5em !important;
+  }
+}
+
+@media screen and (min-height: 400px) {
+  .fa-4x, .logo-text {
+    font-size: 3em !important;
+  }
+  .fa-3x {
+    font-size: 2.25em !important;
+  }
+}
+
+@media screen and (min-height: 600px) {
+  .fa-4x, .logo-text {
+    font-size: 4em !important;
+  }
+  .fa-3x {
+    font-size: 3em !important;
+  }
+}
+
+.site-red {
   color: #ff605d;
 }
