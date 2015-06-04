@@ -4,7 +4,6 @@ $.ajax({
   datatype: 'json'
 }).done(function(response){
   console.log(response);
-  debugger;
   $('div.notification').hide()
 
 
@@ -13,7 +12,7 @@ $.ajax({
   //subscribe to our notifications channel
   var notificationsChannel = pusher.subscribe('notifications' + response.id);
   console.log(notificationsChannel)
-
+  debugger;
   for(var i = 0; i < response.chat_ids.length; i++) {
     var chatChannel = pusher.subscribe('chat' + response.chat_ids[i]);
   }
@@ -59,7 +58,7 @@ var sendMsg = function(){
   // var text = $('input.create-notification').val();
 
   // POST to our server
-  $.post('/messages', {message: { content: "text", user_id: 1, chat_id: 1 } }).success(function(){
-    console.log('Notification sent!');
-  });
+  // $.post('/messages', {message: { content: "text", user_id: 1, chat_id: 1 } }).success(function(){
+  //   console.log('Notification sent!');
+  // });
 };
