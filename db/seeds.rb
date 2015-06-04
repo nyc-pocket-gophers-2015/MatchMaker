@@ -48,8 +48,7 @@ emails = [
 ["logandsprice@gmail.com", "Male"],
 ["guilsa001@gmail.com", "Male"],
 ["nguyennam9696@gmail.com", "Male"],
-["peterjacobson.nz@gmail.com", "Male"],
-[""]
+["peterjacobson.nz@gmail.com", "Male"]
 ]
 
 def find_gravatar_url(user)
@@ -74,6 +73,7 @@ User.create(name: "Matchmaker", email: "yogibrendan@gmail.com", birthday: Faker:
 t = User.create(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
 
 b = User.create(name: "Brendan Miranda", email: "me@brendanmiranda.com", birthday: Faker::Date.between(33.years.ago, 34.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: "female")
+
 
 pairing = Pairing.create(user_id: b.id, pair_id: t.id)
 
