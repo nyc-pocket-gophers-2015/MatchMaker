@@ -69,7 +69,7 @@ emails.each do |cur_email, gender|
   end
 end
 
-User.create(name: "Matchmaker", email: "matchmaker@mm.com", birthday: Faker::Date.between(50.years.ago, 18.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: pref_gender)
+User.create(name: "Matchmaker", email: "yogibrendan@gmail.com", birthday: Faker::Date.between(50.years.ago, 18.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: pref_gender)
 
 t = User.create(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
 
@@ -77,9 +77,14 @@ b = User.create(name: "Brendan Miranda", email: "me@brendanmiranda.com", birthda
 
 pairing = Pairing.create(user_id: b.id, pair_id: t.id)
 
-friendship = Friendship.create(user_id: t.id, friend_id: b.id, status: "approved")
+da_pairing = Pairing.create(user_id: 1, pair_id: 2)
+
+friendship = Friendship.create(user_id: 1, friend_id: b.id, status: "approved")
 
 pairing.votes.build(pairing_id: pairing.id, user_id: 7, score: 1).save
+
+da_pairing.votes.build(pairing_id: da_pairing.id, user_id: 7, score: 1).save
+da_pairing.votes.build(pairing_id: da_pairing.id, user_id: 8, score: 1).save
 
 id = 3
 10.times do
