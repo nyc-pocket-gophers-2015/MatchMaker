@@ -197,7 +197,7 @@ div.ui-block-b {
 }
 
 .notification {
-  color: rgba(48, -85, -102);
+  color: rgba(48, -85, -102, 1);
   padding-bottom: 2px;
   text-shadow: none;
   font-family: sans-serif;
