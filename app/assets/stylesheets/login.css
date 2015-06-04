@@ -30,4 +30,9 @@ body {
   border-radius: 15px;
 }
 
-
+.sign-up {
+  display: block;
+  text-align: center;
+  color: #A9A9A9;
+  font-family: 'Lato', sans-serif;
+}
