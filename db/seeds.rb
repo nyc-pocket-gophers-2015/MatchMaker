@@ -77,7 +77,7 @@ b = User.create(name: "Brendan Miranda", email: "me@brendanmiranda.com", birthda
 
 pairing = Pairing.create(user_id: User.find_by(email: "me@brendanmiranda.com").id, pair_id: User.last.id)
 
-friendship = Friendship.create(user_id: 1, friend_id: b.id, status: "pending")
+friendship = Friendship.create(user_id: 1, friend_id: b.id, status: "approved")
 
 pairing.votes.build(pairing_id: pairing.id, user_id: 7, score: 1).save
 
