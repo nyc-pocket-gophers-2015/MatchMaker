@@ -12,19 +12,20 @@ $.ajax({
   //subscribe to our notifications channel
   var notificationsChannel = pusher.subscribe('notifications' + response.id);
   console.log(notificationsChannel)
-  debugger;
+
   for(var i = 0; i < response.chat_ids.length; i++) {
     var chatChannel = pusher.subscribe('chat' + response.chat_ids[i]);
+
+    chatChannel.bind('new_message', function(msg){
+      var template = Handlebars.compile(messageTemplate);
+      var html = template(msg);
+      $('.msg-container').append(html);
+      // assign the notification's message to a <div></div>
+    });
   }
   // var chatChannel = push.subscribe('conversation' + )
 
   //do something with our new information
-  chatChannel.bind('new_message', function(msg){
-    var template = Handlebars.compile(messageTemplate);
-    var html = template(msg);
-    $('.msg-container').append(html);
-    // assign the notification's message to a <div></div>
-  });
 
   notificationsChannel.bind('new_notification', function(notification){
     // assign the notification's message to a <div></div>
