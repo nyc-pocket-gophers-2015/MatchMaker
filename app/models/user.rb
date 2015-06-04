@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  acts_as_messageable
   has_secure_password
   has_many :friendships
   has_many :friends, through: :friendships
@@ -11,13 +10,14 @@ class User < ActiveRecord::Base
   has_many :inverse_pairings, class_name: "Pairing", foreign_key: "pair_id"
   has_many :inverse_pairs, through: :inverse_pairings, source: :user
 
-  has_many :matches
-  has_many :matchers, through: :matches
-  has_many :inverse_matches, class_name: "Match", foreign_key: "match_id"
-  has_many :inverse_matchers, through: :inverse_matches, source: :user
+  has_many :chats
+  has_many :chatters, through: :chats
+  has_many :inverse_chats, class_name: "Chat", foreign_key: "chatter_id"
+  has_many :inverse_chatters, through: :inverse_chats, source: :user
 
   has_many :notifications
   has_many :votes
+  has_many :messages
 
   validates :name, :email, :password_digest, :gender, presence: true
   validates :email, uniqueness: true
@@ -53,9 +53,6 @@ class User < ActiveRecord::Base
     all_friendships.select { |friendship| friendship.status == "approved" }
   end
 
-  def mailboxer_email(object)
-  end
-
   def can_be_friends(user)
     return false if user == self
     return false if user.all_friends.include?(self)
@@ -64,6 +61,14 @@ class User < ActiveRecord::Base
 
   def pending_friendships
     Friendship.where(friend_id: id, status: "pending")
+  end
+
+  def all_chats
+    return (chats + inverse_chats)
+  end
+
+  def other_chat_user(chat)
+    chat.user.id == self.id ? chat.chatter : chat.user
   end
 
   def age
@@ -94,6 +99,11 @@ class User < ActiveRecord::Base
 
   def all_pending_pairings
     all_pairings.select { |pairing| pairing.is_finished == false }
+  end
+
+  def find_gravatar_url
+    hash = Digest::MD5.hexdigest(email)
+    return "http://www.gravatar.com/avatar/#{hash}"
   end
 
   def find_random_pending_pair_from_friends

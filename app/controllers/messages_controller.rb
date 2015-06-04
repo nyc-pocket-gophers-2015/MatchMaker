@@ -1,15 +1,25 @@
 class MessagesController < ApplicationController
-  before_action :require_current_user
-
-  def new
-  end
-
   def create
-    recipients = User.where(id: params['recipients'])
-    conversation = current_user.send_message(recipients, params[:message][:body], params[:message][:subject]).conversation
-    flash[:success] = "Message has been sent!"
-    redirect_to conversation_path(conversation)
+    @message = Message.new(message_params)
+    if @message.save
+      Pusher.trigger("chat#{@message.chat_id}", 'new_message', {
+          content: @message.content,
+          name: @message.user.name,
+          chat_id: @message.chat_id
+      })
+      if request.xhr?
+        render text: "it worked"
+      else
+        redirect_to chat_path @message.chat_id
+      end
+    else
+      flash[:warn] = "Unable to send message at this time."
+      redirect_to :back
+    end
   end
 
-  # mm.send_message(users, "Congrats, You have been matched.", "no subject").conversation
+  private
+    def message_params
+      params.require(:message).permit(:user_id, :content, :chat_id)
+    end
 end

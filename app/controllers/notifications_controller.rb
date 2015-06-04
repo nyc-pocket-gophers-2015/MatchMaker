@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
 
   def cur_user
-    render text: current_user.id.to_s
+    render json: { id: current_user.id.to_s, chat_ids: current_user.all_chats.map { |chat| chat.id } }
   end
 
   def create

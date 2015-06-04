@@ -240,3 +240,18 @@ ul.friends-list {
   padding-top: 10px;
   width: 100%;
 }
+
+.message-image {
+  height: 80%;
+  float: left;
+  padding-right: 10px !important;
+}
+
+.message-content {
+  padding-bottom: 12px;
+}
+
+.message {
+  padding: 10px 0 10px 0;
+}
+
