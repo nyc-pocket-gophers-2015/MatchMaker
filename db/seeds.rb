@@ -76,7 +76,7 @@ User.create(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: F
 
 pairing = Pairing.create(user_id: User.find_by(email: "me@brendanmiranda.com").id, pair_id: User.last.id)
 
-Pairing.votes.build(pairing_id: pairing.id, user_id: 7, score: 1).save
+pairing.votes.build(pairing_id: pairing.id, user_id: 7, score: 1).save
 
 id = 3
 10.times do
