@@ -72,7 +72,7 @@ end
 
 User.create(name: "Matchmaker", email: "matchmaker@mm.com", birthday: Faker::Date.between(50.years.ago, 18.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: pref_gender)
 
-User.create(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: Faker::Date.26.years.ago, gender: "female", location: "NYC", password: "123", preferred_gender: "male")
+User.create(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
 
 pairing = Pairing.create(user_id: User.find_by(email: "me@brendanmiranda.com").id, pair_id: User.last.id)
 
