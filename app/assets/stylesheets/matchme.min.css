@@ -27,10 +27,6 @@ button,
 	    font-family: sans-serif /*{global-font-family}*/;
 }
 
-.ui-input-text{
-
-}
-
 .ui-input-btn {
 	font-size: 1em;
 	line-height: 1.3;
@@ -40,6 +36,7 @@ button,
   background-color: red !important;
   color: white !important;
   font-family: 'Lato', sans-serif !important;
+  border-radius: 15px !important;
 }
 legend,
 .ui-input-text input,
