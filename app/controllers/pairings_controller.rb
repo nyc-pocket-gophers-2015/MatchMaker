@@ -45,14 +45,16 @@ class PairingsController < ApplicationController
 
   def update
     @pairing = Pairing.find_by(id: params[:id])
-    # @match_bot = User.find_by(name: "Matchmaker")
+    @match_bot = User.find_by(name: "Matchmaker")
     if @pairing
       @pairing.votes.build(user_id: current_user.id, score: params[:score]).save
       if @pairing.is_approved
-        generate_notification(@pairing.user, "Congrats, your friends have just matched you with #{@pairing.pair.name}!", "/users/#{@pairing.pair.id}")
-        generate_notification(@pairing.pair, "Congrats, your friends have just matched you with #{@pairing.user.name}!", "/users/#{@pairing.user.id}")
+        @chat = Chat.create(user_id: @pairing.user.id, chatter_id: @pairing.pair.id)
+        @chat.messages.build(user_id: @match_bot.id, content: "Congrats, your friends think you'd both be cute together! Time to prove them right!").save
+        generate_notification(@pairing.user, "Congrats, your friends have just matched you with #{@pairing.pair.name}!", "/chats")
+        generate_notification(@pairing.pair, "Congrats, your friends have just matched you with #{@pairing.user.name}!", "/chats")
         @pairing.voted_yes.each do |user|
-          generate_notification(user, "What do ya know, your suggestion of #{@pairing.user.name} and #{@pairing.pair.name} resulted in a match!")
+          generate_notification(user, "What do ya know, your suggestion of #{@pairing.user.name} and #{@pairing.pair.name} resulted in a match!", "#")
         end
       end
       # @match_bot.send_message([@pairing.user, @pairing.pair], "Congrats, You have been matched.", "no subject").conversation

@@ -18,13 +18,9 @@ Rails.application.routes.draw do
 
   root 'users#home'
 
-  resources :messages, only: [:new, :create]
+  resources :messages, only: [:create]
 
-  resources :conversations, only: [:index, :show, :destroy] do
-    member do
-      post :reply
-    end
-  end
+  resources :chats, only: [:index, :show, :destroy]
 
   match 'auth/:provider/callback' => 'sessions#create', via: [:get, :post]
   match 'auth/failure' => redirect('/'), via: [:get, :post]
