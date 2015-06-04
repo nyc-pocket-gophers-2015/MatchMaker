@@ -50,6 +50,7 @@ emails = [
 ["guilsa001@gmail.com", "Male"],
 ["nguyennam9696@gmail.com", "Male"],
 ["peterjacobson.nz@gmail.com", "Male"],
+[""]
 ]
 
 def find_gravatar_url(user)
@@ -70,6 +71,12 @@ emails.each do |cur_email, gender|
 end
 
 User.create(name: "Matchmaker", email: "matchmaker@mm.com", birthday: Faker::Date.between(50.years.ago, 18.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: pref_gender)
+
+User.create(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: Faker::Date.26.years.ago, gender: "female", location: "NYC", password: "123", preferred_gender: "male")
+
+pairing = Pairing.create(user_id: User.find_by(email: "me@brendanmiranda.com").id, pair_id: User.last.id)
+
+Pairing.votes.build(pairing_id: pairing.id, user_id: 7, score: 1).save
 
 id = 3
 10.times do
