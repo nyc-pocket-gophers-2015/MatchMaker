@@ -20,6 +20,7 @@ $.ajax({
       var template = Handlebars.compile(messageTemplate);
       var html = template(msg);
       $('.msg-container').append(html);
+      $(".ui-content").animate({ scrollTop: $(".ui-content")[0].scrollHeight}, 1000);
       // assign the notification's message to a <div></div>
     });
   }
