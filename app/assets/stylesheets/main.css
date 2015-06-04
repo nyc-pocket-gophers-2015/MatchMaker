@@ -7,10 +7,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  color: #ff0703 !important;
-}
-
 #popupNested {
   position: fixed;
   top: 75px;

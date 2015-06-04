@@ -1,0 +1,38 @@
+body {
+  background-color: #FFFFFF;
+}
+
+.logo-login-image {
+  position: relative;
+  font-family: 'Lato', sans-serif;
+  text-align: center !important;
+  margin: 0 auto !important;
+  margin-top: 30px !important;
+}
+
+.ui-input-text {
+  width: 70%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  font-family: 'Lato', sans-serif;
+}
+
+#sign_in {
+  font-family: 'Lato', sans-serif;
+  display: block;
+  text-align: center;
+  width: 40% !important;
+  margin: auto !important;
+  max-width: 80% !important;
+  background-color: #3b5999;
+  padding: 15px 60px;
+  color: #FFFFFF !important;
+  border-radius: 15px;
+}
+
+.sign-up {
+  display: block;
+  text-align: center;
+  color: #A9A9A9;
+  font-family: 'Lato', sans-serif;
+}
