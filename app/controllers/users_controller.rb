@@ -66,7 +66,8 @@ class UsersController < ApplicationController
   def send_invite
     email = params[:email]
     UserMailer.invite_email(email).deliver_now
-    redirect_to root_path
+    flash[:notice] = "Invitation Sent!"
+    redirect_to invite_path
   end
 
   private
