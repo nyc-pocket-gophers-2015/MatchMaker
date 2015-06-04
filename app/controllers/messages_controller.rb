@@ -5,7 +5,8 @@ class MessagesController < ApplicationController
       Pusher.trigger("chat#{@message.chat_id}", 'new_message', {
           content: @message.content,
           name: @message.user.name,
-          chat_id: @message.chat_id
+          chat_id: @message.chat_id,
+          url: current_user.find_gravatar_url
       })
       if request.xhr?
         render text: "it worked"
