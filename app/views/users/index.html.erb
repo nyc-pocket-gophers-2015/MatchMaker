@@ -1,4 +1,4 @@
 <!-- <input class="typeahead" type="text" placeholder="Search for Users"> -->
-<div><%= link_to "Friends List", user_friendships_path(user_id: current_user.id) %></div>
-<div><%= link_to "Invite Friends", invite_path %></div>
-<%= text_field_tag :typeahead %>
+<div class="ui-btn"><%= link_to "Friends List", user_friendships_path(user_id: current_user.id) %></div>
+<div class="ui-btn"><%= link_to "Invite Friends", invite_path %></div>
+<%= text_field_tag :typeahead, nil, placeholder: "Search" %>
