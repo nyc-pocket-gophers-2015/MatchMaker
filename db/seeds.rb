@@ -73,9 +73,11 @@ User.create(name: "Matchmaker", email: "matchmaker@mm.com", birthday: Faker::Dat
 
 User.create(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
 
-User.create(name: "Brendan Miranda", email: "me@brendanmiranda.com", birthday: Faker::Date.between(33.years.ago, 34.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: "female")
+b = User.create(name: "Brendan Miranda", email: "me@brendanmiranda.com", birthday: Faker::Date.between(33.years.ago, 34.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: "female")
 
 pairing = Pairing.create(user_id: User.find_by(email: "me@brendanmiranda.com").id, pair_id: User.last.id)
+
+friendship = Friendship.create(user_id: 1, friend_id: b.id, status: "pending")
 
 pairing.votes.build(pairing_id: pairing.id, user_id: 7, score: 1).save
 
