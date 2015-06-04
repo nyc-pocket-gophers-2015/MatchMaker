@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to edit_user_path(@user)
     else
-      user = User.find_by_email(params[:email])
-      if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
+      @user = User.find_by_email(params[:email])
+      if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
         redirect_to user_path current_user
       else
         redirect_to '/login'

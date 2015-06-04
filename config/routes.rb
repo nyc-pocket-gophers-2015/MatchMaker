@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/invite' => 'users#invite'
   post '/invite' => 'users#send_invite'
 
-  root 'users#home'
+  root 'sessions#new'
 
   resources :messages, only: [:create]
 
