@@ -1,6 +1,4 @@
 emails = [
-["alex.taber0@gmail.com", "Male"],
-["doralyp@me.com", "Female" ],
 ["ayme.alvarez@gmail.com", "Female"],
 ["angiegrace84@gmail.com", "Female"],
 ["samantha.belkin@gmail.com", "Female"],
@@ -60,35 +58,43 @@ def pref_gender
   ["Female", "Male"].sample
 end
 
+alex = User.create!(name: "Alex Taber", email: "alex.taber0@gmail.com", birthday: Faker::Date.between(23.years.ago, 24.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: "female")
+b = User.create!(name: "Brendan Miranda", email: "me@brendanmiranda.com", birthday: Faker::Date.between(33.years.ago, 34.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: "female")
+
 emails.each do |cur_email, gender|
-  user = User.create(name: Faker::Name.name, email: cur_email, password: "123", location: Faker::Address.city, gender: gender, birthday: Faker::Date.between(50.years.ago, 18.years.ago), bio: Faker::Hacker.say_something_smart, preferred_gender: pref_gender )
+  user = User.create!(name: Faker::Name.name, email: cur_email, password: "123", location: Faker::Address.city, gender: gender, birthday: Faker::Date.between(50.years.ago, 18.years.ago), bio: Faker::Hacker.say_something_smart, preferred_gender: pref_gender )
   user.update_attributes(picture_url: find_gravatar_url(user))
   unless cur_email == "alex.taber0@gmail.com"
-    Friendship.create(user_id: 1, friend_id: user.id, status: "approved")
+    Friendship.create!(user_id: 1, friend_id: user.id, status: "approved")
   end
 end
 
-User.create(name: "Matchmaker", email: "yogibrendan@gmail.com", birthday: Faker::Date.between(50.years.ago, 18.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: pref_gender)
+User.create!(name: "Matchmaker", email: "yogibrendan@gmail.com", birthday: Faker::Date.between(50.years.ago, 18.years.ago), gender: "none", location: "NYC", password: "123", preferred_gender: pref_gender)
 
-t = User.create(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
+dora = User.create!(name: "Doraly Pantaleon", email: "doralyp@me.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
 
-b = User.create(name: "Brendan Miranda", email: "me@brendanmiranda.com", birthday: Faker::Date.between(33.years.ago, 34.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: "female")
+t = User.create!(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
 
 
-pairing = Pairing.create(user_id: b.id, pair_id: t.id)
+corey = User.create!(name: "Corey Nilan", email: "cnilan@gmail.com", birthday: Faker::Date.between(24.years.ago, 34.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
 
-da_pairing = Pairing.create(user_id: 1, pair_id: 2)
+pairing_corey = Pairing.create!(user: corey, pair: User.where(gender: 'male').order(id: :asc).last)
 
-friendship = Friendship.create(user_id: 1, friend_id: b.id, status: "approved")
+pairing = Pairing.create!(user_id: b.id, pair_id: t.id)
 
-pairing.votes.build(pairing_id: pairing.id, user_id: 7, score: 1).save
+da_pairing = Pairing.create!(user: alex, pair: dora)
+
+friendship = Friendship.create!(user: alex, friend: b, status: "approved")
+friendship = Friendship.create!(user: dora, friend: corey, status: "approved")
+
+pairing.votes.build(pairing_id: pairing.id, user_id: 7, score: 1).save!
 
 da_pairing.votes.build(pairing_id: da_pairing.id, user_id: 7, score: 1).save
 da_pairing.votes.build(pairing_id: da_pairing.id, user_id: 8, score: 1).save
 
 id = 3
 10.times do
-  Friendship.create(user_id: id, friend_id: 2, status: "pending")
+  Friendship.create!(user_id: id, friend_id: 2, status: "pending")
   id += 1
 end
 
