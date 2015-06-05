@@ -60,23 +60,20 @@ end
 
 alex = User.create!(name: "Alex Taber", email: "alex.taber0@gmail.com", birthday: Faker::Date.between(23.years.ago, 24.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: "female")
 b = User.create!(name: "Brendan Miranda", email: "me@brendanmiranda.com", birthday: Faker::Date.between(33.years.ago, 34.years.ago), gender: "male", location: "NYC", password: "123", preferred_gender: "female")
+dora = User.create!(name: "Doraly Pantaleon", email: "doralyp@me.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
+t = User.create!(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
+corey = User.create!(name: "Corey Nilan", email: "cnilan@gmail.com", birthday: Faker::Date.between(24.years.ago, 34.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
 
 emails.each do |cur_email, gender|
   user = User.create!(name: Faker::Name.name, email: cur_email, password: "123", location: Faker::Address.city, gender: gender, birthday: Faker::Date.between(50.years.ago, 18.years.ago), bio: Faker::Hacker.say_something_smart, preferred_gender: pref_gender )
   user.update_attributes(picture_url: find_gravatar_url(user))
   unless cur_email == "alex.taber0@gmail.com"
-    Friendship.create!(user_id: 1, friend_id: user.id, status: "approved")
+    Friendship.create!(user: alex, friend_id: user.id, status: "approved")
+    Friendship.create!(user: dora, friend_id: user.id, status: "approved")
   end
 end
 
 User.create!(name: "Matchmaker", email: "yogibrendan@gmail.com", birthday: Faker::Date.between(50.years.ago, 18.years.ago), gender: "none", location: "NYC", password: "123", preferred_gender: pref_gender)
-
-dora = User.create!(name: "Doraly Pantaleon", email: "doralyp@me.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
-
-t = User.create!(name: "Tracy Teague", email: "tracy.teague05@gmail.com", birthday: Faker::Date.between(26.years.ago, 27.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
-
-
-corey = User.create!(name: "Corey Nilan", email: "cnilan@gmail.com", birthday: Faker::Date.between(24.years.ago, 34.years.ago), gender: "female", location: "NYC", password: "123", preferred_gender: "male")
 
 pairing_corey = Pairing.create!(user: corey, pair: User.where(gender: 'male').order(id: :asc).last)
 
