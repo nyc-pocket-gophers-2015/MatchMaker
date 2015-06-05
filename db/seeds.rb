@@ -83,6 +83,7 @@ pairing_corey = Pairing.create!(user: corey, pair: User.where(gender: 'male').or
 pairing = Pairing.create!(user_id: b.id, pair_id: t.id)
 
 da_pairing = Pairing.create!(user: alex, pair: dora)
+third_pairing = Pairing.create!(user: alex, pair: corey)
 
 friendship = Friendship.create!(user: alex, friend: b, status: "approved")
 friendship = Friendship.create!(user: dora, friend: corey, status: "approved")
