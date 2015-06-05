@@ -90,9 +90,3 @@ pairing.votes.build(pairing_id: pairing.id, user_id: 7, score: 1).save!
 da_pairing.votes.build(pairing_id: da_pairing.id, user_id: 7, score: 1).save
 da_pairing.votes.build(pairing_id: da_pairing.id, user_id: 8, score: 1).save
 
-id = 3
-10.times do
-  Friendship.create!(user_id: id, friend_id: 2, status: "pending")
-  id += 1
-end
-
